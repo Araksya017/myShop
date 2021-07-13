@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Helpers;
-use App\Shopproduct;
+use App\Product;
 use App\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\UrlWindow;
@@ -13,14 +13,14 @@ class Helper{
 
 
         $filters = [];
-        
-        
-        
+
+
+
         if(isset($conditions['search'])){
-            $products = Shopproduct::search($conditions['search'])->where('show',1)->where('price', '!=', '[]');
-            
+            $products = Product::withTranslations()->search($conditions['search'])->where('show',1)->where('price', '!=', '[]');
+
         }else{
-           $products =DB::table('shopproducts')->where('show',1)->where('price', '!=', '[]'); 
+           $products =Product::withTranslations()->where('price', '!=', '[]');
         }
         $order='id';
 //        $price45 = Shopproduct::where('id',1)->firstOrfail();
@@ -56,17 +56,19 @@ class Helper{
 //            dd($cat_id);
             $filters['category_id'] = $cat_id->id;
             if (isset($conditions['min_price']) && isset($conditions['max_price'])) {
-                $products1 = DB::table('shopproducts')->get();
+                $products1 = DB::table('Products')->where('show',1)->get();
                 $json_arr = [];
             }else{
                 if(isset($cat_id[0]))
             $filters['category_id'] = $cat_id[0]->id;
             $products->where($filters);
+//            dd($products);
             }
 
-            $category12 = Category::where('parent',$cat_id->id)->get();
+            $category12 = Category::where('parent_id',$cat_id->id)->get();
             if(empty($category12[0]))
                 $category12=Category::where('id',$cat_id->id)->get();
+//            dd($category12);
             if (count($category12) > 0) {
 
                 $array = [];
@@ -75,7 +77,7 @@ class Helper{
                     if (isset($conditions['min_price']) && isset($conditions['max_price'])) {
                         foreach ($products1 as $json) {
                             if($json->category_id == $category12[$i]->id || $json->category1_id== $category12[$i]->id || $json->category2_id== $category12[$i]->id
-                                || $json->category3_id== $category12[$i]->id){
+                                || $json->category3_id== $category12[$i]->id || $json->category4_id== $category12[$i]->id){
                                 $item1 = json_decode($json->price);
                                 foreach ($item1 as $item) {
                                     if ($item->value > $conditions['min_price'] && $item->value < $conditions['max_price'] ) {
@@ -94,11 +96,28 @@ class Helper{
                         // $products=$products->orWhere('price->value','>=',$conditions['min_price'])->orWhere('price->value','<=',$conditions['max_price']);
                     } else {
                         $filters['category_id'] = $category12[$i]->id;
+                        // dd($category12[$i]->id);
 
                         $filters1['category1_id'] = $category12[$i]->id;
                         $filters2['category2_id']  = $category12[$i]->id;
                         $filters3['category3_id'] = $category12[$i]->id;
-                        $products->orWhere($filters)->orWhere($filters1)->orWhere($filters2)->orWhere($filters3);
+                        $filters4['category4_id'] = $category12[$i]->id;
+                        $glob_cat=$category12[$i]->id;
+                        // $products->orWhere($filters)->orWhere($filters1)->orWhere($filters2)->orWhere($filters3)->where('show',1);
+//                         $products->where(function ($query) {
+//                             global $glob_cat;
+//     $query->where('category_id',$glob_cat);
+// })->orWhere(function ($query) {
+//                             global $glob_cat;
+//     $query->where('category1_id',$glob_cat);
+// })->orWhere(function ($query) {
+//                             global $glob_cat;
+//     $query->where('category2_id',$glob_cat);
+// })->orWhere(function ($query) {
+//                             global $glob_cat;
+//     $query->where('category3_id',$glob_cat);
+// });
+                        $products->where($filters);
                     }
                 }
             }
@@ -108,9 +127,9 @@ class Helper{
 //                dd($products->get());/
             }
         }
-        
+
         if(isset($conditions['min_price']) && isset($conditions['max_price'])){
-            $products1 =DB::table('shopproducts')->get();
+            $products1 =DB::table('shopproducts')->where('show',1)->get();
             // dd($products1);
             $json_arr=[];
             foreach ($products1 as $json){
@@ -130,11 +149,11 @@ class Helper{
         // if (isset($conditions['sale'])) {
         //     // dd($conditions['sale']);
         //     $filters['sale'] = $conditions['sale'];
-            
+
 //             SELECT id, JSON_EXTRACT(price, '$.value') AS value FROM `shopproducts`
 // ORDER BY value DESC
-            
-            
+
+
             // $products = $products->orderBy('CAST(JSON_EXTRACT(price, "$[0].value") AS SIGNED)','DESC');
             // $query = 'CAST(JSON_EXTRACT(price, "$[0].value") AS SIGNED) DESC';
             // $products = $products->orderByRaw($query);
@@ -142,20 +161,19 @@ class Helper{
             // dd($products);
         // }
         if (isset($conditions['sale'])) {
-            if($conditions['sale']=='Աճման'){
+            if($conditions['sale']=='Increase'){
                 $products = $products->orderByRaw('CAST(JSON_EXTRACT(price, "$[0].value") AS SIGNED)');
             }else {
                 $products = $products->orderByRaw('CAST(JSON_EXTRACT(price, "$[0].value") AS SIGNED) DESC');
             }
         }else {
-            $products = $products->orderBy($order,'DESC');//->onEachSide(1)
+            $products = $products->orderBy('updated_at','DESC');//->onEachSide(1)
         }
-        // dd($products);
+//         dd($products);
         if(isset($conditions['pagecount'])) {
             $paginate=$conditions['pagecount'];
         }
         $products =$products->paginate($paginate)->appends('category',request('category'))->appends('sale',request('sale'))->appends('search',request('search'))->appends('min_price',request('min_price'))->appends('max_price',request('max_price'))->appends('pagecount',request('pagecount'));
-        // dd($products);
 //        if(isset($conditions['price'])){
 //            $filters['price'] = $conditions['price'];
 //
@@ -187,7 +205,7 @@ class Helper{
         return $products;
 
     }
-    
+
     public static function render(LengthAwarePaginator $paginator, $onEachSide = 2)
 {
     $window = UrlWindow::make($paginator, $onEachSide);

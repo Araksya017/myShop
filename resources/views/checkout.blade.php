@@ -42,18 +42,19 @@
 
                         <div class="tab-content" >
                           <div class="tab-pane fade show active" id="pills-shipping" role="tabpanel" aria-labelledby="pills-shipping-tab">
-                            <form>
+                            <form action="{{ route('checkout.update') }}" method="post" name="general-form">
+                                @csrf
                               <div class="form-row">
                                   <div class="from-group col-md-6 mb-3">
                                       <div class="input-group ">
 
-                                        <input type="text" class="form-control" id="inlineFormInputGroup0" placeholder="{{ __('messages.имя') }}">
+                                        <input type="text" class="form-control" name="name" value = "{{$user->name}}" id="inlineFormInputGroup0" placeholder="{{ __('messages.имя') }}">
                                       </div>
                                     </div>
                                     <div class="from-group col-md-6 mb-3">
                                       <div class="input-group ">
 
-                                        <input type="text" class="form-control" id="inlineFormInputGroup1" placeholder="{{ __('messages.фамиля') }}">
+                                        <input type="text" class="form-control" name="surname" value = "{{$user->surname}}" id="inlineFormInputGroup1" placeholder="{{ __('messages.фамиля') }}">
                                       </div>
                                     </div>
                               </div>
@@ -61,51 +62,51 @@
                                   <div class="from-group col-md-6 mb-3">
                                       <div class="input-group"  >
 
-                                          <input type="text" class="form-control" id="inlineFormInputGroup8" placeholder="{{ __('messages.телефон') }}">
+                                          <input type="text" class="form-control" name="phone" value = "{{$user->phone}}" id="inlineFormInputGroup8" placeholder="{{ __('messages.телефон') }}">
                                       </div>
                                     </div>
                                     <div class="from-group col-md-6 mb-3">
                                         <div class="input-group ">
 
-                                          <input type="text" class="form-control" id="inlineFormInputGroup3" placeholder="{{ __('messages.адрес') }}">
+                                          <input type="text" class="form-control" name="adress" value = "{{$user->adress}}" id="inlineFormInputGroup3" placeholder="{{ __('messages.адрес_ул_дом_кв') }}">
                                         </div>
                                       </div>
                               </div>
-                              <div class="form-row">
-                                  <div class="from-group col-md-6 mb-3">
-                                      <div class="input-group select-control">
+{{--                              <div class="form-row">--}}
+{{--                                  <div class="from-group col-md-6 mb-3">--}}
+{{--                                      <div class="input-group select-control">--}}
 
-                                          <select class="form-control" id="inlineFormInputGroup4">
-                                              <option selected>{{ __('messages.выберите_страну') }}</option>
-                                              <option  value="1">USA</option>
-                                              <option value="2">Canada</option>
-                                            </select>
-                                      </div>
-                                    </div>
-                                    <div class="from-group col-md-6 mb-3">
-                                        <div class="input-group select-control">
+{{--                                          <select class="form-control" id="inlineFormInputGroup4">--}}
+{{--                                              <option selected>{{ __('messages.выберите_страну') }}</option>--}}
+{{--                                              <option  value="1">USA</option>--}}
+{{--                                              <option value="2">Canada</option>--}}
+{{--                                            </select>--}}
+{{--                                      </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="from-group col-md-6 mb-3">--}}
+{{--                                        <div class="input-group select-control">--}}
 
-                                            <select class="form-control" id="inlineFormInputGroup5">
-                                                <option selected>{{ __('messages.выберите_область') }}</option>
-                                                <option  value="1">New York</option>
-                                                <option value="2">Taxes</option>
-                                              </select>
-                                        </div>
-                                      </div>
+{{--                                            <select class="form-control" id="inlineFormInputGroup5">--}}
+{{--                                                <option selected>{{ __('messages.выберите_область') }}</option>--}}
+{{--                                                <option  value="1">New York</option>--}}
+{{--                                                <option value="2">Taxes</option>--}}
+{{--                                              </select>--}}
+{{--                                        </div>--}}
+{{--                                      </div>--}}
 
-                              </div>
+{{--                              </div>--}}
 
                               <div class="form-row">
                                   <div class="from-group col-md-6 mb-3">
                                       <div class="input-group"  >
 
-                                          <input type="text" class="form-control" id="inlineFormInputGroup7" placeholder="{{ __('messages.город') }}">
+                                          <input type="text" class="form-control" name="city" id="inlineFormInputGroup7" placeholder="{{ __('messages.город') }}">
                                       </div>
                                     </div>
                                     <div class="from-group col-md-6 mb-3">
                                         <div class="input-group"  >
 
-                                            <input type="text" class="form-control" id="inlineFormInputGroup7" placeholder="{{ __('messages.Почтовый_индекс') }}">
+                                            <input type="text" class="form-control" name="post" id="inlineFormInputGroup7" placeholder="{{ __('messages.Почтовый_индекс') }}">
                                         </div>
                                       </div>
 
@@ -224,7 +225,7 @@
                           <div class="tab-pane fade" id="pills-method" role="tabpanel" aria-labelledby="pills-method-tab">
 
                                       <div class="col-12 col-sm-12 ">
-                                        <div class="row"> <p>Please select a prefered shipping method to use on this order</p></div>
+                                        <div class="row"> <p>{{ __('messages.выберите_способ_доставки') }}</p></div>
                                       </div>
 
                                       <div class="col-12 col-sm-12 ">
@@ -278,38 +279,55 @@ Flat Rate --- $11
                                         </div>
                                         <div class="col-12 col-sm-12">
                                             <div class="row">
-                                                <a data-toggle="pill" href="#pills-billing" class="btn btn-light swipe-to-top cta">Back</a>
+                                                <a data-toggle="pill" href="#pills-billing" class="btn btn-light swipe-to-top cta">{{ __('messages.Назад') }}</a>
 
-                                              <a  data-toggle="pill" href="#pills-order" class="btn btn-secondary swipe-to-top cta">Continue</a>
+                                              <a  data-toggle="pill" href="#pills-order" class="btn btn-secondary swipe-to-top cta">{{ __('messages.Продолжить') }}</a>
                                               </div>
                                             </div>
-
-
                           </div>
+
+
+
+                            <?php
+                            $user=Auth::user();
+                            $cartProduct=DB::table('products')
+                                ->leftJoin('cart', 'products.id', 'cart.product_id')->where('cart.user_id',$user->id)
+                                ->get();
+                            $total=0;
+                            $total_sum = 0;
+                            $cart_count = 0;
+                            $count = 1;
+                             ?>
                           <div class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
+
+
                             <table class="table top-table">
                               <thead>
                                 <tr class="d-flex">
-                                  <th class="col-12 col-md-2">ITEM(S)</th>
+                                  <th class="col-12 col-md-2">{{ __('messages.товары') }}</th>
                                   <th class="col-12 col-md-4"></th>
-                                  <th class="col-12 col-md-2">PRICE</th>
-                                  <th class="col-12 col-md-2">QTY</th>
-                                  <th class="col-12 col-md-2">SUBTOTAL</th>
+                                  <th class="col-12 col-md-2">{{ __('messages.цена') }}</th>
+                                  <th class="col-12 col-md-2">{{ __('messages.количество') }}</th>
+                                  <th class="col-12 col-md-2">{{ __('messages.Промежуточная_цена') }}</th>
                                 </tr>
                               </thead>
+                                @foreach($products as $item)
+                                    <?php $total = $item->count * $item->price; ?>
 
                               <tbody>
+
+
                                   <tr class="d-flex">
                                     <td class="col-12 col-md-2" >
-                                        <img class="img-fluid" src="images/product_images/product_image_02.jpg" alt="Product Image"/>
+                                        <img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image"/>
                                     </td>
                                       <td class="col-12 col-md-4">
                                         <div class="item-detail">
-                                            <span class="pro-info">Earrings</span>
+                                            <span class="pro-info"> <a href="{{  route('product.index', $item->id)}}">{{ $item->title}}</a></span>
                                             <h2 class="pro-title">
 
                                               <a href="#">
-    Crystal Water Drop Earrings
+{{--                                                  {{ $item->categories}}--}}
 </a>
 
                                             </h2>
@@ -325,52 +343,23 @@ Flat Rate --- $11
                                             </div>
                                           </div>
                                       </td>
-                                    <td class="item-price col-12 col-md-2">$285</td>
+                                    <td class="item-price col-12 col-md-2">{{$item->price}}</td>
                                     <td class="col-12 col-md-2">
                                         <div class="input-group">
-2
-
+                                            {{$item -> count}}
                                         </div>
                                     </td>
-                                    <td class="align-middle item-total col-12 col-md-2">$570</td>
+                                    <td class="align-middle item-total col-12 col-md-2">{{ $total}}</td>
                                   </tr>
-                                  <tr class="d-flex">
-                                    <td class="col-12 col-md-2" >
-                                        <img class="img-fluid" src="images/product_images/product_image_03.jpg" alt="Product Image"/>
-                                    </td>
-                                      <td class="col-12 col-md-4">
-                                        <div class="item-detail">
-                                            <span class="pro-info">Ring Collection</span>
-                          <h2 class="pro-title">
 
-                            <a href="#">
-    Crytal Wedding Engagement Rings
-</a>
 
-                          </h2>
-                                            <div class="item-attributes"></div>
-                                            <div class="item-controls">
-                                                <button type="button" class="btn" >
-                                                    <span class="fas fa-pencil-alt"></span>
-                                                </button>
-                                                <button type="button" class="btn" >
-                                                    <span class="fas fa-times"></span>
-                                                </button>
-                                            </div>
-                                          </div>
-                                      </td>
-                                    <td class="item-price col-12 col-md-2">$85</td>
-                                    <td class="col-12 col-md-2">
-                                        <div class="input-group">
-4
-
-                                        </div>
-                                    </td>
-                                    <td class="align-middle item-total col-12 col-md-2">$340</td>
-                                  </tr>
                               </tbody>
+                                        <?php $total_sum+= $item->count*$item->price; ?>
+                                @endforeach
 
                             </table>
+
+
                                 <div class="col-12 col-sm-12">
                                     <div class="row">
                                         <div class="heading">
@@ -425,7 +414,7 @@ Flat Rate --- $11
                                 <div class="col-12 col-sm-12">
                                     <div class="row">
                                       <a data-toggle="pill" href="#pills-method"  class="btn btn-light swipe-to-top cta">Back</a>
-                                  <a href="thankyou.html" class="btn btn-secondary swipe-to-top">Continue</a>
+                                  <a href="thankyou.html" class="btn btn-secondary swipe-to-top">{{ __('messages.Продолжить') }}</a>
                                     </div>
                                 </div>
                           </div>
@@ -434,37 +423,38 @@ Flat Rate --- $11
                   </div>
               </div>
               <div class="col-12 col-xl-3">
+
                   <table class="table right-table">
                     <thead>
                       <tr>
-                        <th scope="col" colspan="2">Order Summary</th>
+                        <th scope="col" colspan="2">{{ __('messages.итог_заказа') }}</th>
 
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope="row">Subtotal</th>
+                        <th scope="row">{{ __('messages.Промежуточная_цена') }}</th>
                         <td >$910.00</td>
 
                       </tr>
                       <tr>
-                        <th scope="row">Coupon Code</th>
+                        <th scope="row">{{ __('messages.Код_купона') }}</th>
                         <td >$20.00</td>
 
                       </tr>
                       <tr>
-                          <th scope="row">TAX</th>
+                          <th scope="row">{{ __('messages.налоги') }}</th>
                           <td >$150.00</td>
 
                         </tr>
                         <tr>
-                            <th scope="row">FLat Rate Shipping</th>
+                            <th scope="row">{{ __('messages.фсд') }}</th>
                             <td >$11.00</td>
 
                           </tr>
                       <tr class="item-price">
-                        <th scope="row">Total</th>
-                        <td >$1051.00</td>
+                        <th scope="row">{{ __('messages.Итог') }}</th>
+                        <td >{{ $total_sum}}</td>
 
                       </tr>
                     </tbody>

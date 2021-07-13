@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +15,26 @@ Route::get('/', function () {
     $products = \App\Product::with('user')->get();
 //    dd($products);
 });
+
+//avelacratc 09.05
+
+Auth::routes();
+
+
+Route::group(['middleware'=>'auth'],function (){
+
+    Route::get('admin/users','UsersController@index')->name('users.admin');
+    Route::post('/admin/users/insert','UsersController@insert')->name('users.usersinsert');
+    Route::get('myprofile','UsersController@index')->name('users.users')->middleware('auth');
+    Route::post('updateuser','UsersController@update')->name('user.update')->middleware('auth');
+    Route::post('updateadress','AdressController@update')->name('adress.update')->middleware('auth');
+});
+
+//avelacratc 17.05
+ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+
 Route::get('admin/category','CategoryController@index')->name('category.admin');
 Route::get('/admin/category/insert','CategoryController@insert')->name('category.categoryinsert');
 //
@@ -43,7 +63,44 @@ Route::get('/blog','BlogController@index')->name('blog.blog');
 
 Route::get('/cart','CartController@index')->name('cart.cart');
 
+Route::post('/create','CartController@create')->name('create.create');
+
+Route::get('/remove/{id}','CartController@remove')->name('cart.remove');
+
+Route::post('/wish','WishlistController@create')->name('create.wish');
+
+Route::get('/delete/{id}','WishlistController@remove')->name('wish.remove');
+
+
+
 Route::get('/checkout','CheckoutController@index')->name('checkout');
+Route::post('/checkout_update','CheckoutController@update')->name('checkout.update');
+//Route::post('/create','CheckoutController@create')->name('checkout.create');
+//Route::get('/remove/{id}','CheckoutController@remove')->name('checkout.remove');
+
+
+Route::get('/sales','SalesController@index')->name('sale');
+
+Route::get('/sale/{id}','SalesController@index')->name('sale.sale');
+
+Route::get('/new','NewController@index')->name('new');
+Route::get('/news/{id}','NewController@index')->name('new.products');
+
+//Route::get('/login','Auth\LoginController@__construct')->name('login');
+//Route::('/login','LoginpageController@index')->name('login');
+
+Route::get('/wishlist','WishlistController@index')->name('wishlist');
+
+Route::get('/compare','CompareController@index')->name('compare');
+
+Route::get('/order','OrderController@index')->name('order');
+
+Route::get('/adress','adressController@index')->name('adress');
+
+Route::get('/changepsw','ChangepswController@index')->name('changepsw');
+
+
+
 
 
 
@@ -70,9 +127,6 @@ Route::get('locale/{locale}', function ($locale){
 
 
 
-Route::get('admin/users','UsersController@index')->name('users.admin');
-Route::post('/admin/users/insert','UsersController@insert')->name('users.usersinsert');
-Route::get('users','UsersController@index')->name('users.users');
 
 
 
@@ -87,6 +141,7 @@ Route::get('/admin/menus/delete/{id}','MenusController@delete')->name('menus.men
 
 
 Route::get('home','HomeController@index')->name('home.home');
+Route::get('/','HomeController@index');
 Route::get('katalog','KatalogController@index')->name('katalog.katalog');
 
 
@@ -100,3 +155,15 @@ Route::post('/admin/language/insert','LanguageController@insert')->name('languag
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

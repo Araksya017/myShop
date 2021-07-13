@@ -9,6 +9,11 @@ class Product extends Model
 {
     use Translatable;
     protected $translatable = ['title', 'description'];
+
+    public static function withTranslation(string $getLocale)
+    {
+    }
+
     public function user(){
         return $this->hasOne(User::class,'id','created_user_id');
     }

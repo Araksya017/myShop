@@ -9,8 +9,8 @@
     <nav aria-label="breadcrumb">
         <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Shipping Address</li>
+                <li class="breadcrumb-item"><a href="{{ route('home.home') }}">{{ __('messages.главная') }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ __('messages.адрес_доставки') }}</li>
             </ol>
         </div>
     </nav>
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="pro-heading-title">
                 <h1>
-                    Shipping Address
+                    {{ __('messages.адрес_доставки') }}
                 </h1>
             </div>
         </div>
@@ -31,39 +31,39 @@
 
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a class="nav-link" href="profile.html">
+                        <a class="nav-link" href="{{ route('users.users') }}">
                             <i class="fas fa-user"></i>
-                            Profile
+                            {{ __('messages.профиль') }}
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="wishlist.html">
+                        <a class="nav-link" href="{{ route('wishlist') }}">
                             <i class="fas fa-heart"></i>
-                            Wishlist
+                            {{ __('messages.Мои_желания') }}
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="orders.html">
+                        <a class="nav-link" href="{{ route('cart.cart') }}">
                             <i class="fas fa-shopping-cart"></i>
-                            Orders
+                            {{ __('messages.мои_заказы') }}
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="shipping-address.html">
+                        <a class="nav-link" href="{{ route('adress') }}">
                             <i class="fas fa-map-marker-alt"></i>
-                            Shipping Address
+                            {{ __('messages.адрес_доставки') }}
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('logout') }}">
                             <i class="fas fa-power-off"></i>
-                            Logout
+                            {{ __('messages.выйти') }}
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="change-password.html">
+                        <a class="nav-link" href="{{ route('changepsw') }}">
                             <i class="fas fa-unlock-alt"></i>
-                            Change Password
+                            {{ __('messages.изменить_пароль') }}
                         </a>
                     </li>
                 </ul>
@@ -74,8 +74,8 @@
                 <table class="table">
                     <thead>
                     <tr class="d-flex">
-                        <th class="col-12 col-md-8">DEFAULT ADDRESS</th>
-                        <th class="col-12 col-md-4">ACTION</th>
+                        <th class="col-12 col-md-8">{{ __('messages.адрес_доставки') }}</th>
+                        <th class="col-12 col-md-4">{{ __('messages.действие') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -95,8 +95,8 @@
 
                         <td class=" col-12 col-md-4">
                             <ul  class="controls">
-                                <li><a href="#"> <i class="fas fa-pen"></i> Edit</a></li>
-                                <li><a href="#"> <i class="fas fa-trash-alt"></i> Remove</a></li>
+                                <li><a href="{{ route('users.users') }}"> <i class="fas fa-pen"></i> {{ __('messages.Редактировать') }}</a></li>
+                                <li><a href="#"> <i class="fas fa-trash-alt"></i> {{ __('messages.Удалить') }}</a></li>
                             </ul>
 
                         </td>
@@ -108,20 +108,21 @@
 
 
                 <div class="add-address">
-                    <form action="/" name="general-form">
-                        <h4 >Personal Information</h4>
+                    <form action="{{ route('adress.update') }}" name="general-form">
+                        @csrf
+                        <h4 >{{ __('messages.Персональная_информация') }}</h4>
 
                         <div class="form-row">
                             <div class="from-group col-md-6 mb-4">
                                 <div class="input-group ">
 
-                                    <input type="text" name="firstname" class="form-control" id="inlineFormInputGroup0" placeholder="First Name">
+                                    <input type="text" name="name" value = "{{$user->name}}" class="form-control" id="inlineFormInputGroup0" placeholder="{{ __('messages.введите_ваше_имя') }}">
                                 </div>
                             </div>
                             <div class="from-group col-md-6 mb-4">
                                 <div class="input-group ">
 
-                                    <input type="text" name="lastname" class="form-control" id="inlineFormInputGroup1" placeholder="Last Name">
+                                    <input type="text" name="surname" value = "{{$user->surname}}" class="form-control" id="inlineFormInputGroup1" placeholder="{{ __('messages.введите_ваше_фамилию') }}">
                                 </div>
                             </div>
 
@@ -131,68 +132,68 @@
                             <div class="from-group col-md-6 mb-4">
                                 <div class="input-group ">
 
-                                    <input type="text" class="form-control" id="inlineFormInputGroup2" placeholder="Company Name">
-                                </div>
+                                    <input type="text" name="phone"  value = "{{$user->phone}}"class="form-control" id="inlineFormInputGroup2" placeholder="{{ __('messages.номер_телефона') }}">
+                               </div>
                             </div>
                             <div class="from-group col-md-6 mb-4">
                                 <div class="input-group ">
 
-                                    <input type="text" name="address" class="form-control" id="inlineFormInputGroup3" placeholder="Address">
+                                    <input type="text" name="address" value = "{{$user->adress}}" class="form-control" id="inlineFormInputGroup3" placeholder="{{ __('messages.адрес_ул_дом_кв') }}">
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="from-group col-md-6 mb-4">
-                                <div class="input-group select-control">
+{{--                        <div class="form-row">--}}
+{{--                            <div class="from-group col-md-6 mb-4">--}}
+{{--                                <div class="input-group select-control">--}}
 
-                                    <select class="form-control" name="SelectName" id="inlineFormInputGroup4">
-                                        <option selected>Select Country</option>
-                                        <option value="1">Canada</option>
-                                        <option value="2">United Kingdom</option>
-                                        <option value="3">United States</option>
+{{--                                    <select class="form-control" name="SelectName" id="inlineFormInputGroup4">--}}
+{{--                                        <option selected>{{ __('messages.Выберите_страну') }}</option>--}}
+{{--                                        <option value="1">Canada</option>--}}
+{{--                                        <option value="2">United Kingdom</option>--}}
+{{--                                        <option value="3">United States</option>--}}
 
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="from-group col-md-6 mb-4">
-                                <div class="input-group select-control">
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="from-group col-md-6 mb-4">--}}
+{{--                                <div class="input-group select-control">--}}
 
-                                    <select class="form-control" name="SelectStateName" id="inlineFormInputGroup5">
-                                        <option selected>Select State</option>
-                                        <option value="1">Alaska</option>
-                                        <option value="2">New York</option>
-                                        <option value="3">Taxes</option>
-                                    </select>
-                                </div>
-                            </div>
+{{--                                    <select class="form-control" name="SelectStateName" id="inlineFormInputGroup5">--}}
+{{--                                        <option selected>{{ __('messages.Выберите_район') }}</option>--}}
+{{--                                        <option value="1">Alaska</option>--}}
+{{--                                        <option value="2">New York</option>--}}
+{{--                                        <option value="3">Taxes</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                        </div>
+{{--                        </div>--}}
                         <div class="form-row">
                             <div class="from-group col-md-6 mb-4">
                                 <div class="input-group"  >
 
-                                    <input type="text" name="postcode" class="form-control" id="inlineFormInputGroup7" placeholder="City">
+                                    <input type="text" name="city" value = "{{$user->city}}" class="form-control" id="inlineFormInputGroup7" placeholder="{{ __('messages.город') }}">
                                 </div>
                             </div>
                             <div class="from-group col-md-6 mb-4">
                                 <div class="input-group"  >
 
-                                    <input type="text" name="postcode" class="form-control" id="inlineFormInputGroup7" placeholder="Postal Code">
+                                    <input type="text" name="post" value = "{{$user->post}}" class="form-control" id="inlineFormInputGroup7" placeholder="{{ __('messages.Почтовый_индекс') }}">
                                 </div>
                             </div>
 
                         </div>
-                        <div class="form-row">
-                            <div class="from-group col-md-6 mb-4">
-                                <div class="input-group">
+{{--                        <div class="form-row">--}}
+{{--                            <div class="from-group col-md-6 mb-4">--}}
+{{--                                <div class="input-group">--}}
 
-                                    <input type="text" name="phone" class="form-control" id="inlineFormInputGroup8" placeholder="Phone">
-                                </div>
-                            </div>
+{{--                                    <input type="text" name="phone" class="form-control" id="inlineFormInputGroup8" placeholder="{{ __('messages.номер_телефона') }}">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                        </div>
+{{--                        </div>--}}
 
-                        <button type="submit" class="btn btn-secondary swipe-to-top">Add Address</button>
+                        <button type="submit" class="btn btn-secondary swipe-to-top">{{ __('messages.Добавить_адрес') }}</button>
                     </form>
                 </div>
                 <!-- ............the end..... -->

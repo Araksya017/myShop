@@ -46,6 +46,12 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        //avelacratc 10.06
+//        'api' => [
+//            'driver' => 'passport',
+//            'provider' => 'customers',
+//            'hash' => false,
+//        ],
     ],
 
     /*
@@ -70,6 +76,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+
+          //avelacratc 10.06
+//        'customers' => [
+//            'driver' => 'eloquent',
+//            'model' => App\Models\Customer::class,
+//        ],
 
         // 'users' => [
         //     'driver' => 'database',

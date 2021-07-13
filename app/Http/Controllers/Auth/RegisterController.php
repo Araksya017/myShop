@@ -7,6 +7,9 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
+
 
 class RegisterController extends Controller
 {
@@ -28,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/myprofile';
 
     /**
      * Create a new controller instance.
@@ -37,7 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+//        $this->middleware('guest');
     }
 
     /**
@@ -50,8 +53,18 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+//           'gender' => ['required|in:male,female'],
+//            'img' => ['required', 'image'],
+            'phone' => ['required', 'string', 'min:6'],
+//            'usersale' => ['required', 'numeric', 'min:4'],
+//            'cupon' => ['required', 'numeric', 'min:1'],
+//            'point' => ['required', 'numeric', 'min:1'],
+//            'adress' => ['required',  'max:255'],
+//            'post' => ['required', 'string', 'max:255'],
+//            'city' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
         ]);
     }
 
@@ -63,10 +76,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//        dd($data);
         return User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
+//            'gender' => $data['gender'],
+//            'img' => $data['img'],
+            'phone' => $data['phone'],
+//            'usersale' => $data['usersale'],
+//            'cupon' => $data['cupon'],
+//            'point' => $data['point'],
+//            'city' => $data['city'],
+//            'adress' => $data['adress'],
+//            'post' => $data['post'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            Auth::user()
         ]);
     }
+
+//    //avelacratc
+//
+//    protected function guard()
+//    {
+//        return Auth::guard('guard-name');
+//    }
+
+
 }

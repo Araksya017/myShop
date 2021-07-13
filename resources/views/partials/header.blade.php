@@ -19,12 +19,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <!-- Core CSS Files -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 
     <!-- Slider Revolution CSS Files -->
-    <link rel="stylesheet" type="text/css" href="revolution/css/settings.css">
-    <link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
-    <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
+    <link rel="stylesheet" type="text/css" href="/css/settings.css">
+    <link rel="stylesheet" type="text/css" href="/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css">
 
 
 </head>
@@ -70,14 +70,33 @@
                             <a href="javascript:void(0);" class="dropdown-toggle">
                                 {{ __('messages.профиль') }}
                             </a>
+
+                            @auth
                             <div class="dropdown-menu" >
-                                <a class="dropdown-item" href="{{ route('users.users') }}">{{ __('messages.войти') }}</a>
-                                <a class="dropdown-item" href="wishlist.html">{{ __('messages.регистрация') }}</a>
-                                <a class="dropdown-item" href="compare.html">{{ __('messages.сравнить') }}</a>
-                                <a class="dropdown-item" href="orders.html">{{ __('messages.мои_заказы') }}</a>
-                                <a class="dropdown-item" href="shipping-address.html">{{ __('messages.адрес_доставки') }}</a>
-                                <a class="dropdown-item" href="#">{{ __('messages.выйти') }}</a>
+                                <a class="dropdown-item" href="{{ route('users.users') }}">{{ __('messages.моя_страница') }}</a>
+
+                                <a class="dropdown-item" href="{{ route('wishlist') }}">{{ __('messages.Мои_желания') }}</a>
+                                <a class="dropdown-item" href="{{ route('cart.cart') }}">{{ __('messages.моя_корзина') }}</a>
+
+                                <a class="dropdown-item" href="{{ route('compare') }}">{{ __('messages.сравнить') }}</a>
+                                <a class="dropdown-item" href="{{ route('order') }}">{{ __('messages.мои_заказы') }}</a>
+                                <a class="dropdown-item" href="{{ route('adress') }}">{{ __('messages.адрес_доставки') }}</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}">{{ __('messages.выйти') }}</a>
                             </div>
+                                @endauth
+
+                            @guest
+                                <div class="dropdown-menu" >
+
+                                    <a class="dropdown-item" href="{{ route('login') }}">{{ __('messages.войти') }}</a>
+                                    <a class="dropdown-item" href="{{ route('login') }}">{{ __('messages.регистрация') }}</a>
+
+                                </div>
+                            @endguest
+
+
+
+
                         </div>
                         <div class="dropdown">
                             <a href="javascript:void(0);" class="dropdown-toggle">
@@ -115,7 +134,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-sm-12 col-lg-2">
-                    <a href="index.html" class="logo" data-toggle="tooltip" data-placement="bottom" title="logo" >
+                    <a href="{{  route('home.home')}}" class="logo" data-toggle="tooltip" data-placement="bottom" title="logo" >
                         <img class="img-fluid" src="images/logo/logo.png"  alt="logo here">
                     </a>
                 </div>
@@ -137,17 +156,18 @@
                                         {{ __('messages.каталог') }}
                                         <span class="badge badge-secondary">{{ __('messages.новинки') }}</span>
                                     </a>
+
                                     <div class="dropdown-menu mega-dropdown-menu row ">
                                         <div class="col-12">
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <ul>
                                                         <li class="dropdown-header">{{ __('messages.категории') }}</li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.детская_мебель') }}">{{ __('messages.детская_мебель') }}</a></li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.постельные_принадлежности') }}">{{ __('messages.постельные_принадлежности') }}</a></li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.детские_игрушки_и_игры') }}">{{ __('messages.детские_игрушки_и_игры') }}</a></li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.коляски_и_автокресла') }}">{{ __('messages.коляски_и_автокресла') }}</a></li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.купание_малыша') }}">{{ __('messages.купание_малыша') }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.детская_мебель'), 'name' => request()->name ])}}">{{ __('messages.детская_мебель') }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.постельные_принадлежности'), 'name' => request()->name ])}}">{{ __('messages.постельные_принадлежности') }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.детские_игрушки_и_игры'), 'name' => request()->name ])}}">{{ __('messages.детские_игрушки_и_игры') }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.коляски_и_автокресла'), 'name' => request()->name ])}}">{{ __('messages.коляски_и_автокресла') }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.купание_малыша'), 'name' => request()->name ])}}">{{ __('messages.купание_малыша') }}</a></li>
 {{--                                                        <li><a class="dropdown-item" href="#">Kitchen Appliances</a></li>--}}
 {{--                                                        <li><a class="dropdown-item" href="#">Video games</a></li>--}}
 {{--                                                        <li><a class="dropdown-item" href="#">Touch Screen</a></li>--}}
@@ -257,41 +277,18 @@
 
                                 <li class="nav-item dropdown">
 
-                                    <a class="nav-link dropdown-toggle" href="{{ __('messages.акции') }}" >
+                                    <a class="nav-link " href="{{ route('sale') }}" >
                                         {{ __('messages.акции') }}
                                     </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="shop-page1.html">{{ __('messages.детская_мебель') }}
-                                        </a>
-                                        <a class="dropdown-item" href="shop-page2.html">{{ __('messages.постельные_принадлежности') }}
-                                        </a>
-                                        <a class="dropdown-item" href="shop-page3.html">{{ __('messages.детские_игрушки_и_игры') }}</a>
-                                        <a class="dropdown-item" href="shop-page4.html">{{ __('messages.коляски_и_автокресла') }}</a>
-                                        <a class="dropdown-item" href="shop-page5.html">{{ __('messages.купание_малыша') }}</a>
-
-                                    </div>
                                 </li>
-
-
-
-                                </li>
-
 
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="{{ __('messages.новинки') }}" >
+                                    <a class="nav-link " href="{{ route('new') }}" >
                                         {{ __('messages.новинки') }}
                                     </a>
-                                    <div class="dropdown-menu" >
-                                        <a class="dropdown-item" href="product-page1.html">{{ __('messages.детская_мебель') }}</a>
-                                        <a class="dropdown-item" href="product-page2.html">{{ __('messages.постельные_принадлежности') }}</a>
-                                        <a class="dropdown-item" href="product-page3.html">{{ __('messages.детские_игрушки_и_игры') }}</a>
-                                        <a class="dropdown-item" href="product-page4.html">{{ __('messages.коляски_и_автокресла') }}</a>
-                                        <a class="dropdown-item" href="product-page5.html">{{ __('messages.купание_малыша') }}</a>
 
-                                    </div>
                                 </li>
-
 
 
                                 <li class="nav-item dropdown">
@@ -299,12 +296,12 @@
                                         {{ __('messages.помощ') }}
                                     </a>
                                     <div class="dropdown-menu">
-                                        <div class="dropdown-submenu">
+{{--                                        <div class="dropdown-submenu">--}}
 {{--                                            <a class="dropdown-item" href="{{ __('messages.о_магазине') }}">{{ __('messages.о_магазине') }}--}}
 
 {{--                                            </a>--}}
 
-                                        </div>
+{{--                                        </div>--}}
                                         <div class="dropdown-submenu">
 
                                             <a class="dropdown-item" href="{{ route('about.us') }}">{{ __('messages.о_магазине') }}
@@ -314,17 +311,18 @@
                                         </div>
                                         <div class="dropdown-submenu">
                                             <a class="dropdown-item" href="{{ route('contact.us') }}">{{ __('messages.свяжитесь_с_нами') }}
-                                                <i class="fas fa-chevron-right"></i>
+{{--                                                <i class="fas fa-chevron-right"></i>--}}
                                             </a>
                                         </div>
+
                                         <div class="dropdown-submenu">
-                                            <a class="dropdown-item" href="{{ __('messages.регистрация') }}">{{ __('messages.регистрация') }}
+                                            <a class="dropdown-item" href="{{ route('login') }}">{{ __('messages.регистрация') }}
                                                 <i class="fas fa-chevron-right"></i>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="signup.html">{{ __('messages.регистрация') }}</a>
+                                                <a class="dropdown-item" href="{{ route('login') }}">{{ __('messages.регистрация') }}</a>
 {{--                                                <a class="dropdown-item" href="login-page1.html">Login Page 1</a>--}}
-                                                <a class="dropdown-item" href="login-page2.html">{{ __('messages.войти') }}</a>
+                                                <a class="dropdown-item" href="{{  route('login')}}">{{ __('messages.войти') }}</a>
                                             </div>
                                         </div>
 
@@ -335,17 +333,17 @@
 
                                         </div>
 
-                                        <div class="dropdown-submenu">
-                                            <a class="dropdown-item" href="{{ route('cart.cart') }}">{{ __('messages.корзина') }}
-                                                <i class="fas fa-chevron-right"></i>
-                                            </a>
+{{--                                        <div class="dropdown-submenu">--}}
+{{--                                            <a class="dropdown-item" href="{{ route('cart.cart') }}">{{ __('messages.корзина') }}--}}
+{{--                                                <i class="fas fa-chevron-right"></i>--}}
+{{--                                            </a>--}}
 
-                                        </div>
+{{--                                        </div>--}}
 
-                                        <div class="dropdown-submenu">
-                                            <a class="dropdown-item" href="{{ route('checkout') }}">Checkout</a>
+{{--                                        <div class="dropdown-submenu">--}}
+{{--                                            <a class="dropdown-item" href="{{ route('checkout') }}">{{ __('messages.оформления_заказа') }}</a>--}}
 
-                                        </div>
+{{--                                        </div>--}}
 
 {{--                                        <div class="dropdown-submenu">--}}
 {{--                                            <a class="dropdown-item" href="#">Email Templates--}}
@@ -367,6 +365,8 @@
                         </div>
                     </nav>
                 </div>
+
+                @auth
                 <div class="col-6 col-sm-6 col-md-4 col-lg-2">
                     <ul class="pro-header-right-options">
 
@@ -387,64 +387,122 @@
                             </div>
 
                         </li>
+
+
+
                         <li>
-                            <a href="wishlist.html" class="btn" data-toggle="tooltip" data-placement="bottom" title={{ __('messages.избранное') }}>
+                            <?php
+                            $user=Auth::user();
+                            if(isset($user->id))
+                            $wishProduct = DB::table('products')
+                            ->leftJoin('wishlist', 'products.id', 'wishlist.product_id')
+                            ->where('wishlist.user_id',$user->id)
+                            ->get();
+                            $wcount=(isset($user->id))?count($wishProduct):0;
+                            ?>
+
+                            <a href="{{ route('wishlist') }}" class="btn" data-toggle="tooltip" data-placement="bottom" title={{ __('messages.Мои_желания') }}>
                                 <i class="far fa-heart"></i>
-                                <span class="badge badge-secondary">3</span>
+                                <span class="badge badge-secondary">{{ $wcount}}</span>
                             </a>
                         </li>
+            <?php
+                        $user=Auth::user();
+                        if(isset($user->id))
+                        $cartProduct=DB::table('products')
+                            ->leftJoin('cart', 'products.id', 'cart.product_id')
+                            ->where('cart.user_id',$user->id)
+                            ->get();
+
+                        $total=0;
+                        $ccount=(isset($user->id))?count($cartProduct):0;
+                        ?>
+
                         <li class="cart-header dropdown head-cart-content" data-toggle="tooltip" data-placement="bottom" title={{ __('messages.корзина') }}>
                             <button type="button" id="dropdownCart" class="btn dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                                 <i class="fas fa-shopping-cart"></i>
-                                <span class="badge badge-secondary">2</span>
+
+                                <?php $qt=1; ?>
+
+                                <span class="badge badge-secondary">{{ $ccount}}</span>
+
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownCart">
                                 <ul class="shopping-cart-items">
+                                    @if(isset($user->id))
+                                    @foreach( $cartProduct as $item)
                                     <li>
                                         <div class="item-thumb">
-
                                             <div class="image">
-                                                <img class="img-fluid" src="images/product_images_demo_2/product_image_01.jpg" alt="Product Image">
+                                                <img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image">
                                             </div>
                                         </div>
                                         <div class="item-detail">
-                                            <h2>Original Samsung Galaxy S8 Plus</h2>
-                                            <div class="item-s">1 x $900.00 <i class="fas fa-trash"></i></div>
+                                            <h2>{{ $item->title}}</h2>
+                                            <div class="item-s">{{ $item->count}} x {{ $item->price}} <a href="{{  route('cart.remove',$item->id)}}"> <i class="fas fa-trash"></i></a></div>
                                         </div>
                                     </li>
+                                        <?php
+                                            $total+= $item->count*$item->price;
+                                            ?>
+                                    @endforeach
+                                    @endif
                                     <li>
-                                        <div class="item-thumb">
-
-                                            <div class="image">
-                                                <img class="img-fluid" src="images/product_images_demo_2/product_image_02.jpg" alt="Product Image">
-                                            </div>
-                                        </div>
-                                        <div class="item-detail">
-                                            <h2>15-6 Metal gaming notebook laptop</h2>
-                                            <span class="item-s">2 x $1185.00 <i class="fas fa-trash"></i></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                              <span class="item-summary">Total&nbsp;:&nbsp;<span>$3270.00</span>
+                              <span class="item-summary">{{ __('messages.Итог') }}&nbsp;:&nbsp;<span>${{$total}}</span>
                               </span>
                                     </li>
                                     <li>
-                                        <a class="btn  btn-link btn-block " href="cart-page1.html">View Cart</a>
-                                        <a class="btn btn-secondary btn-block  swipe-to-top" href="checkout.html">Checkout</a>
+                                        <a class="btn  btn-link btn-block " href="{{ route('cart.cart') }}">{{ __('messages.корзина') }}</a>
+                                        <a class="btn btn-secondary btn-block  swipe-to-top" href="{{ route('cart.cart') }}">{{ __('messages.оформления_заказа') }}</a>
                                     </li>
                                 </ul>
-
-
                             </div>
                         </li>
+
                     </ul>
                 </div>
+                @endauth
+
+                @guest
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+                        <ul class="pro-header-right-options">
+                            <li class="dropdown">
+                                <button type="button" id="dropdownSearch2" class="btn dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownSearch2">
+                                    <form>
+                                        <div class="pt-col">
+                                            <input type="text" class="pt-search-input" placeholder={{ __('messages.поиск') }}>
+                                            <button class="btn pt-btn-search" type="submit">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="{{ route('login') }}" class="btn" data-toggle="tooltip" data-placement="bottom" title={{ __('messages.Мои_желания') }}>
+                                    <i class="far fa-heart"></i>
+                                    <span class="badge badge-secondary">0</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a href="{{ route('login') }}" class="cart-header dropdown head-cart-content" data-toggle="tooltip" data-placement="bottom" title={{ __('messages.корзина') }}>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="badge badge-secondary">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                @endguest
+
+
+
+
             </div>
         </div>
     </div>
-
-
-
 
 
 
@@ -457,7 +515,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12 col-sm-12 col-lg-2">
-                    <a href="index.html" class="logo" data-toggle="tooltip" data-placement="bottom" title="logo" >
+                    <a href="{{  route('home.home')}}" class="logo" data-toggle="tooltip" data-placement="bottom" title="logo" >
                         <img class="img-fluid" src="images/logo/logo.png"  alt="logo here">
                     </a>
                 </div>
@@ -481,7 +539,7 @@
 {{--                                    </div>--}}
                                 </li>
 
-                                <li class="nav-item dropdown mega-dropdown">
+                                <li class="nav-item ">
                                     <a class="nav-link dropdown-toggle" href="{{ route('shop.shop') }}"  >
                                         {{ __('messages.каталог') }}
                                         <span class="badge badge-secondary">{{ __('messages.новинки') }}</span>
@@ -492,111 +550,23 @@
                                                 <div class="col-md-2">
                                                     <ul>
                                                         <li class="dropdown-header">{{ __('messages.категории') }}</li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.детская_мебель') }}">{{ __('messages.детская_мебель') }}</a></li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.постельные_принадлежности') }}">{{ __('messages.постельные_принадлежности') }}</a></li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.детские_игрушки_и_игры') }}">{{ __('messages.детские_игрушки_и_игры') }}</a></li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.коляски_и_автокресла') }}">{{ __('messages.коляски_и_автокресла') }}</a></li>
-                                                        <li><a class="dropdown-item" href="{{ __('messages.купание_малыша') }}">{{ __('messages.купание_малыша') }}</a></li>
-                                                        <li><a class="dropdown-item" href="#">Men Accessroies</a></li>
-                                                        <li><a class="dropdown-item" href="#">Women Accessroies</a></li>
-                                                        <li><a class="dropdown-item" href="#">Women Tops</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.детская_мебель'), 'name' => request()->name ])}}">{{ __('messages.детская_мебель') }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.постельные_принадлежности'),
+                                                        'name' => request()->name ])}}">{{ __('messages.постельные_принадлежности') }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.детские_игрушки_и_игры'),
+                                                        'name' => request()->name ])}}">{{ __('messages.детские_игрушки_и_игры') }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.коляски_и_автокресла'),
+                                                        'name' => request()->name ])}}">{{ __('messages.коляски_и_автокресла') }}</a></li>
+                                                        <li><a class="dropdown-item" href="{{route('shop.shop',['category' =>  __('messages.купание_малыша'),
+                                                        'name' => request()->name ])}}">{{ __('messages.купание_малыша') }}</a></li>
+{{--                                                        <li><a class="dropdown-item" href="#">Men Accessroies</a></li>--}}
+{{--                                                        <li><a class="dropdown-item" href="#">Women Accessroies</a></li>--}}
+{{--                                                        <li><a class="dropdown-item" href="#">Women Tops</a></li>--}}
                                                     </ul>
                                                 </div>
-{{--                                                <div class="col-md-2">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li class="dropdown-header">Departments</li>--}}
-{{--                                                        <li><a class="dropdown-item" href="#">Hot Sales</a></li>--}}
-{{--                                                        <li><a class="dropdown-item" href="#">High Fashion</a></li>--}}
-{{--                                                        <li><a class="dropdown-item" href="#">Wedding & Events</a></li>--}}
-{{--                                                        <li><a class="dropdown-item" href="#">Accessories</a></li>--}}
-{{--                                                        <li><a class="dropdown-item" href="#">Bottoms</a></li>--}}
-{{--                                                        <li><a class="dropdown-item" href="#">Tops & Tees</a></li>--}}
-{{--                                                        <li><a class="dropdown-item" href="#">Jackets & Coats</a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="col-md-2">--}}
-{{--                                                    <ul>--}}
-{{--                                                        <li><a class="dropdown-item dropdown-header" href="#">Shop Instagram</a></li>--}}
-{{--                                                        <li><a class="dropdown-item dropdown-header" href="#">Shop By Brands</a></li>--}}
-{{--                                                        <li><a class="dropdown-item dropdown-header" href="#">Repair & Cleaning</a></li>--}}
-{{--                                                        <li><a class="dropdown-item dropdown-header" href="#">Sell Your Product</a></li>--}}
-{{--                                                    </ul>--}}
-{{--                                                </div>--}}
-
-{{--                                                <div class="col-md-6">--}}
-{{--                                                    <div class="row">--}}
-{{--                                                        <div class="col-6 col-lg-6">--}}
-{{--                                                            <div class="product">--}}
-{{--                                                                <article>--}}
-{{--                                                                    <div class="pro-thumb ">--}}
-
-{{--                                                                        <a href="product-page1.html">--}}
-{{--                                                                            <span class="pro-image"><img class="img-fluid" src="images/product_images_demo_3/product_image_02.jpg" alt="Product Image"></span>--}}
-{{--                                                                            <span class="pro-image-hover swipe-to-top"><img class="img-fluid" src="images/product_images_demo_3/product_image_02_02.jpg" alt="Product Image"></span>--}}
-{{--                                                                        </a>--}}
-{{--                                                                        <div class="pro-buttons">--}}
-{{--                                                                            <div class="pro-icons">--}}
-{{--                                                                                <a href="wishlist.html" class="icon active swipe-to-top">--}}
-{{--                                                                                    <i class="fas fa-heart"></i>--}}
-{{--                                                                                </a>--}}
-{{--                                                                                <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">--}}
-{{--                                                                                    <i class="fas fa-eye"></i>--}}
-{{--                                                                                </div>--}}
-{{--                                                                                <a href="compare.html" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>--}}
-{{--                                                                            </div>--}}
 
 
-{{--                                                                            <a href="shop-page1.html" class="btn btn-secondary btn-block swipe-to-top">Add to Cart</a>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="pro-tag bg-success">NEW</div>--}}
-{{--                                                                    </div>--}}
-{{--                                                                    <div class="pro-description">--}}
 
-{{--                                                                        <h2 class="pro-title"><a href="product-page1.html">Denim Jeans for Men</a></h2>--}}
-
-
-{{--                                                                    </div>--}}
-{{--                                                                </article>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="col-6  col-lg-6">--}}
-{{--                                                            <div class="product">--}}
-{{--                                                                <article>--}}
-{{--                                                                    <div class="pro-thumb ">--}}
-
-{{--                                                                        <a href="product-page1.html">--}}
-{{--                                                                            <span class="pro-image"><img class="img-fluid" src="images/product_images_demo_3/product_image_08.jpg" alt="Product Image"></span>--}}
-{{--                                                                            <span class="pro-image-hover swipe-to-top"><img class="img-fluid" src="images/product_images_demo_3/product_image_02.jpg" alt="Product Image"></span>--}}
-{{--                                                                        </a>--}}
-{{--                                                                        <div class="pro-buttons">--}}
-{{--                                                                            <div class="pro-icons">--}}
-{{--                                                                                <a href="wishlist.html" class="icon active swipe-to-top">--}}
-{{--                                                                                    <i class="fas fa-heart"></i>--}}
-{{--                                                                                </a>--}}
-{{--                                                                                <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">--}}
-{{--                                                                                    <i class="fas fa-eye"></i>--}}
-{{--                                                                                </div>--}}
-{{--                                                                                <a href="compare.html" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>--}}
-{{--                                                                            </div>--}}
-
-
-{{--                                                                            <a href="shop-page1.html" class="btn btn-secondary btn-block swipe-to-top">Add to Cart</a>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="pro-tag bg-success">NEW</div>--}}
-{{--                                                                    </div>--}}
-
-{{--                                                                    <div class="pro-description">--}}
-
-{{--                                                                        <h2 class="pro-title"><a href="product-page1.html">Double Tank Trouser</a></h2>--}}
-
-
-{{--                                                                    </div>--}}
-{{--                                                                </article>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
 
                                             </div>
                                         </div>
@@ -605,35 +575,18 @@
                                 </li>
 
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" >
+                                    <a class="nav-link " href="{{ route('sale') }}" >
                                         {{ __('messages.акции') }}
                                     </a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="shop-page1.html">{{ __('messages.детская_мебель') }}
-                                        </a>
-                                        <a class="dropdown-item" href="shop-page2.html">{{ __('messages.постельные_принадлежности') }}
-                                        </a>
-                                        <a class="dropdown-item" href="shop-page3.html">{{ __('messages.детские_игрушки_и_игры') }}</a>
-                                        <a class="dropdown-item" href="shop-page4.html">{{ __('messages.коляски_и_автокресла') }}</a>
-                                        <a class="dropdown-item" href="shop-page5.html">{{ __('messages.купание_малыша') }}</a>
 
-                                    </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" >
+                                    <a class="nav-link " href="{{ route('new') }}" >
                                         {{ __('messages.новинки') }}
                                     </a>
-                                    <div class="dropdown-menu" >
-                                        <a class="dropdown-item" href="product-page1.html">{{ __('messages.детская_мебель') }}</a>
-                                        <a class="dropdown-item" href="product-page2.html">{{ __('messages.постельные_принадлежности') }}</a>
-                                        <a class="dropdown-item" href="product-page3.html">{{ __('messages.детские_игрушки_и_игры') }}</a>
-                                        <a class="dropdown-item" href="product-page4.html">{{ __('messages.коляски_и_автокресла') }}</a>
-                                        <a class="dropdown-item" href="product-page5.html">{{ __('messages.купание_малыша') }}</a>
-
-                                    </div>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="{{ route('contact.us') }}" >
+                                    <a class="nav-link " href="{{ route('contact.us') }}" >
                                         {{ __('messages.помощ') }}
                                     </a>
                                     <div class="dropdown-menu">
@@ -647,18 +600,18 @@
                                         </div>
                                         <div class="dropdown-submenu">
                                             <a class="dropdown-item" href="{{ route('contact.us') }}">{{ __('messages.свяжитесь_с_нами') }}
-                                                <i class="fas fa-chevron-right"></i>
+{{--                                                <i class="fas fa-chevron-right"></i>--}}
                                             </a>
 
                                         </div>
                                         <div class="dropdown-submenu">
-                                            <a class="dropdown-item" href="{{ __('messages.регистрация') }}">{{ __('messages.регистрация') }}
+                                            <a class="dropdown-item" href="{{ route('login') }}">{{ __('messages.регистрация') }}
                                                 <i class="fas fa-chevron-right"></i>
                                             </a>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="signup.html">{{ __('messages.регистрация') }}</a>
+                                                <a class="dropdown-item" href="{{ route('login') }}">{{ __('messages.регистрация') }}</a>
 
-                                                <a class="dropdown-item" href="login-page2.html">{{ __('messages.войти') }}</a>
+                                                <a class="dropdown-item" href="{{ route('login') }}">{{ __('messages.войти') }}</a>
                                             </div>
                                         </div>
 
@@ -669,17 +622,17 @@
 
                                         </div>
 
-                                        <div class="dropdown-submenu">
-                                            <a class="dropdown-item" href="{{ route('cart.cart') }}">{{ __('messages.корзина') }}
-                                                <i class="fas fa-chevron-right"></i>
-                                            </a>
+{{--                                        <div class="dropdown-submenu">--}}
+{{--                                            <a class="dropdown-item" href="{{ route('cart.cart') }}">{{ __('messages.корзина') }}--}}
+{{--                                                <i class="fas fa-chevron-right"></i>--}}
+{{--                                            </a>--}}
 
-                                        </div>
+{{--                                        </div>--}}
 
-                                        <div class="dropdown-submenu">
-                                            <a class="dropdown-item" href="{{ route('checkout') }}">Checkout</a>
+{{--                                        <div class="dropdown-submenu">--}}
+{{--                                            <a class="dropdown-item" href="{{ route('checkout') }}">{{ __('messages.оформления_заказа') }}</a>--}}
 
-                                        </div>
+{{--                                        </div>--}}
 
 {{--                                        <div class="dropdown-submenu">--}}
 {{--                                            <a class="dropdown-item" href="#">Email Templates--}}
@@ -701,6 +654,8 @@
                         </div>
                     </nav>
                 </div>
+
+                @auth
                 <div class="col-6 col-sm-6 col-md-4 col-lg-2">
                     <ul class="pro-header-right-options">
 
@@ -720,51 +675,92 @@
                                 </form>
                             </div>
 
+
                         </li>
                         <li>
-                            <a href="wishlist.html" class="btn" data-toggle="tooltip" data-placement="bottom" title="{{ __('messages.избранное') }}">
+                            <?php
+                            $user=Auth::user();
+                            if(isset($user->id))
+                            $wishProduct = DB::table('products')
+                                ->leftJoin('wishlist', 'products.id', 'wishlist.product_id')
+                                ->where('wishlist.user_id',$user->id)
+                                ->get();
+                            $wcount=(isset($user->id))?count($wishProduct):0;
+                            ?>
+
+                            <a href="{{ route('wishlist') }}" class="btn" data-toggle="tooltip" data-placement="bottom" title="{{ __('messages.Мои_желания') }}">
                                 <i class="far fa-heart"></i>
-                                <span class="badge badge-secondary">3</span>
+
+                                <span class="badge badge-secondary">{{ $wcount}}</span>
                             </a>
+
                         </li>
+
+                        <?php
+                        if(isset($user->id))
+                        $cartProduct=DB::table('products')
+                            ->leftJoin('cart', 'products.id', 'cart.product_id')
+                            ->where('cart.user_id',$user->id)
+                            ->get();
+                        $total=0;
+                        $ccount=(isset($user->id))?count($cartProduct):0;
+
+                        ?>
+
                         <li class="cart-header dropdown" data-toggle="tooltip" data-placement="bottom" title="{{ __('messages.корзина') }}">
                             <button type="button" id="stickyHeaderCartButton" class="btn dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
                                 <i class="fas fa-shopping-cart"></i>
-                                <span class="badge badge-secondary">2</span>
+
+
+
+                                <?php $qt=1; ?>
+
+
+                                    <span class="badge badge-secondary">{{ $ccount}}</span>
+
+
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="stickyHeaderCartButton">
                                 <ul class="shopping-cart-items">
+                                    @if(isset($user->id))
+                                    @foreach($cartProduct as $item)
+
+
                                     <li>
                                         <div class="item-thumb">
 
                                             <div class="image">
-                                                <img class="img-fluid" src="images/product_images/product_image_02.jpg" alt="Product Image">
+                                                <img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image">
                                             </div>
                                         </div>
                                         <div class="item-detail">
-                                            <h2>Crystal Water Drop Earrings</h2>
-                                            <div class="item-s">2 x $285.00 <i class="fas fa-trash"></i></div>
+                                            <h2>{{ $item->title}}</h2>
+                                            <div class="item-s">{{ $item->count}} x {{ $item->price}} <a href="{{  route('cart.remove',$item->id)}}"> <i class="fas fa-trash"></i></a></div>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="item-thumb">
 
-                                            <div class="image">
-                                                <img class="img-fluid" src="images/product_images/product_image_03.jpg" alt="Product Image">
-                                            </div>
-                                        </div>
-                                        <div class="item-detail">
-                                            <h2>Crytal Wedding Engagement Rings</h2>
-                                            <span class="item-s">4 x $85.00 <i class="fas fa-trash"></i></span>
-                                        </div>
-                                    </li>
+                                        <?php $total+= $item->count*$item->price; ?>
+                                    @endforeach
+                                    @endif
+                                        {{--                                    <li>--}}
+{{--                                        <div class="item-thumb">--}}
+
+{{--                                            <div class="image">--}}
+{{--                                                <img class="img-fluid" src="images/product_images/product_image_03.jpg" alt="Product Image">--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="item-detail">--}}
+{{--                                            <h2>Crytal Wedding Engagement Rings</h2>--}}
+{{--                                            <span class="item-s">4 x $85.00 <i class="fas fa-trash"></i></span>--}}
+{{--                                        </div>--}}
+{{--                                    </li>--}}
                                     <li>
-                                <span class="item-summary">Total&nbsp;:&nbsp;<span>$910.00</span>
+                                <span class="item-summary">{{ __('messages.Итог') }}&nbsp;:&nbsp;<span>${{$total}}</span>
                                 </span>
                                     </li>
                                     <li>
-                                        <a class="btn btn-link btn-block " href="cart-page1.html">View Cart</a>
-                                        <a class="btn btn-secondary btn-block  swipe-to-top" href="checkout.html">Checkout</a>
+                                        <a class="btn btn-link btn-block " href="{{ route('cart.cart') }}">{{ __('messages.корзина') }}</a>
+                                        <a class="btn btn-secondary btn-block  swipe-to-top" href="{{ route('checkout') }}">{{ __('messages.оформления_заказа') }}</a>
                                     </li>
                                 </ul>
 
@@ -773,6 +769,42 @@
                         </li>
                     </ul>
                 </div>
+                @endauth
+
+                @guest
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-2">
+                        <ul class="pro-header-right-options">
+                            <li class="dropdown">
+                                <button type="button" id="dropdownSearch2" class="btn dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownSearch2">
+                                    <form>
+                                        <div class="pt-col">
+                                            <input type="text" class="pt-search-input" placeholder={{ __('messages.поиск') }}>
+                                            <button class="btn pt-btn-search" type="submit">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="{{ route('login') }}" class="btn" data-toggle="tooltip" data-placement="bottom" title={{ __('messages.Мои_желания') }}>
+                                    <i class="far fa-heart"></i>
+                                    <span class="badge badge-secondary">0</span>
+                                </a>
+                            </li>
+                            <li >
+                                <a href="{{ route('login') }}" class="cart-header dropdown head-cart-content" data-toggle="tooltip" data-placement="bottom" title={{ __('messages.корзина') }}>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="badge badge-secondary">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                @endguest
+
             </div>
         </div>
     </div>
@@ -846,7 +878,7 @@
                                     <span>{{ __('messages.добро_пожаловать') }}</span>
                                 </div>
                                 <div class="logout">
-                                    <a href="#" class="">{{ __('messages.выйти') }}</a>
+                                    <a href="{{ route('logout') }}" class="">{{ __('messages.выйти') }}</a>
                                 </div>
 
                             </div>
@@ -871,57 +903,38 @@
 {{--                                </ul>--}}
 {{--                            </div>--}}
 
-                            <a class="main-manu btn" data-toggle="collapse" href="#shoppages" role="button" aria-expanded="false" aria-controls="{{ route('shop.shop') }}">
+                            <a class="main-manu btn" data-toggle="collapse" href="{{ route('shop.shop') }}" role="button" aria-expanded="false" aria-controls="shoppages">
                                 {{ __('messages.каталог') }}
 
                             </a>
                             <div class="sub-manu collapse multi-collapse" id="shoppages">
                                 <ul class="unorder-list">
                                     <li class="">
-                                        <a href="shop-page1.html" class="btn main-manu">
+                                        <a href="{{route('shop.shop',['category' =>  __('messages.детская_мебель'), 'name' => request()->name ])}}" class="btn main-manu">
                                             {{ __('messages.детская_мебель') }}
                                         </a>
-                                        <a href="shop-page2.html" class="btn main-manu">
+                                        <a href="{{route('shop.shop',['category' =>  __('messages.постельные_принадлежности'), 'name' => request()->name ])}}" class="btn main-manu">
                                             {{ __('messages.постельные_принадлежности') }}
                                         </a>
-                                        <a href="shop-page3.html" class="btn main-manu">
+                                        <a href="{{route('shop.shop',['category' =>  __('messages.детские_игрушки_и_игры'), 'name' => request()->name ])}}" class="btn main-manu">
                                             {{ __('messages.детские_игрушки_и_игры') }}
                                         </a>
-                                        <a href="shop-page4.html" class="btn main-manu">
+                                        <a href="{{route('shop.shop',['category' =>  __('messages.коляски_и_автокресла'), 'name' => request()->name ])}}" class="btn main-manu">
                                             {{ __('messages.коляски_и_автокресла') }}
                                         </a>
-                                        <a href="shop-page5.html" class="btn main-manu">
+                                        <a href="{{route('shop.shop',['category' =>  __('messages.купание_малыша'), 'name' => request()->name ])}}" class="btn main-manu">
                                             {{ __('messages.купание_малыша') }}
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <a class=" main-manu btn" data-toggle="collapse" href="#productpages" role="button" aria-expanded="false" aria-controls="productpages">
+                            <a class=" main-manu btn" data-toggle="collapse" href="{{ route('sale') }}" role="button" aria-expanded="false" aria-controls="productpages">
                                 {{ __('messages.акции') }}
 
                             </a>
-                            <div class="sub-manu collapse multi-collapse" id="productpages">
-                                <ul class="unorder-list">
-                                    <li class="">
-                                        <a href="product-page1.html" class="btn main-manu">
-                                            {{ __('messages.детская_мебель') }}
-                                        </a>
-                                        <a href="product-page2.html" class="btn main-manu">
-                                            {{ __('messages.постельные_принадлежности') }}
-                                        </a>
-                                        <a href="product-page3.html" class="btn main-manu">
-                                            {{ __('messages.детские_игрушки_и_игры') }}
-                                        </a>
-                                        <a href="product-page4.html" class="btn main-manu">
-                                            {{ __('messages.коляски_и_автокресла') }}
-                                        </a>
-                                        <a href="product-page5.html" class="btn main-manu">
-                                            {{ __('messages.купание_малыша') }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+
+
 
                             <a class=" main-manu btn" data-toggle="collapse" href="{{ route('contact.us') }}" role="button" aria-expanded="false" aria-controls="staticpages">
                                 {{ __('messages.помощ') }}
@@ -943,7 +956,7 @@
                                         </a>
 
 
-                                        <a class="main-manu btn" data-toggle="collapse" href="#staticlogin" role="button" aria-expanded="false" aria-controls="staticlogin">
+                                        <a class="main-manu btn" data-toggle="collapse" href="{{ route('login') }}" role="button" aria-expanded="false" aria-controls="staticlogin">
                                             {{ __('messages.вход') }}
 
                                         </a>
@@ -962,28 +975,48 @@
 
 
                                         <a href="{{ route('checkout') }}" class="main-manu btn ">
-                                            Checkout
+                                            {{ __('messages.оформления_заказа') }}
                                         </a>
                                     </li>
                                 </ul>
                             </div>
 
-                            <a href="profile.html" class="main-manu btn ">
+                            @auth
+
+                            <a href="{{  route('users.users')}}" class="main-manu btn ">
                                 {{ __('messages.профиль') }}
                             </a>
-                            <a href="wishlist.html" class="main-manu btn ">
-                                {{ __('messages.избранное') }}
+
+                            <a href="{{ route('wishlist') }}" class="main-manu btn ">
+                                {{ __('messages.Мои_желания') }}
                             </a>
-                            <a href="compare.html" class="main-manu btn ">
+                                <a href="{{  route('cart.cart')}}" class="main-manu btn ">
+                                    {{ __('messages.моя_корзина') }}
+                                </a>
+                            <a href="{{ route('compare') }}" class="main-manu btn ">
                                 {{ __('messages.сравнить') }}
                             </a>
 
-                            <a href="orders.html" class="main-manu btn ">
+                            <a href="{{ route('order') }}" class="main-manu btn ">
                                 {{ __('messages.мои_заказы') }}
                             </a>
-                            <a href="shipping-address.html" class="main-manu btn ">
+                            <a href="{{ route('adress') }}" class="main-manu btn ">
                                 {{ __('messages.адрес_доставки') }}
                             </a>
+
+                               @endauth
+
+
+                            @guest
+                                <a href="{{  route('login')}}" class="main-manu btn ">
+                                    {{ __('messages.войти') }}
+                                </a>
+                                <a href="{{  route('login')}}" class="main-manu btn ">
+                                    {{ __('messages.регистрация') }}
+                                </a>
+
+                            @endguest
+
                         </nav>
                     </div>
 
@@ -992,52 +1025,73 @@
 
 
                 <div class="col-8">
-                    <a href="index.html" class="logo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="logo">
+                    <a href="{{  route('home.home')}}" class="logo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="logo">
                         <img class="img-fluid" src="images/logo/logo.png" alt="logo here">
                     </a>
                 </div>
+
+                @auth
+                <?php
+                $user=Auth::user();
+                if(isset($user->id))
+                $cartProduct=DB::table('products')
+                    ->leftJoin('cart', 'products.id', 'cart.product_id')->where('cart.user_id',$user->id)
+                    ->get();
+                $total=0;
+                $ccount=(isset($user->id))?count($cartProduct):0;
+                ?>
 
                 <div class="col-2 pl-0">
                     <div class="cart-dropdown dropdown">
                         <a class="cart-dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="badge badge-secondary">2</span>
+
+                            <?php $qt=1; ?>
+
+                                <span class="badge badge-secondary">{{ $ccount}}</span>
+
                         </a>
 
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="headerOneCartButton">
                             <ul class="shopping-cart-items">
+                                @if(isset($user->id))
+                                @foreach($cartProduct as $item)
                                 <li>
                                     <div class="item-thumb">
 
                                         <div class="image">
-                                            <img class="img-fluid" src="images/product_images/product_image_02.jpg" alt="Product Image">
+                                            <img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image">
                                         </div>
                                     </div>
                                     <div class="item-detail">
-                                        <h2>Crystal Water Drop Earrings</h2>
-                                        <div class="item-s">2 x $285.00 <i class="fas fa-trash"></i></div>
+                                        <h2>{{ $item->title}}</h2>
+                                        <div class="item-s">{{ $item->count}} x {{ $item->price}} <a href="{{  route('cart.remove',$item->id)}}"> <i class="fas fa-trash"></i></a></div>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="item-thumb">
 
-                                        <div class="image">
-                                            <img class="img-fluid" src="images/product_images/product_image_03.jpg" alt="Product Image">
-                                        </div>
-                                    </div>
-                                    <div class="item-detail">
-                                        <h2>Crytal Wedding Function Rings</h2>
-                                        <span class="item-s">4 x $85.00 <i class="fas fa-trash"></i></span>
-                                    </div>
+                                    <?php $total += $item->count * $item->price; ?>
+                                    @endforeach
+                                    @endif
                                 </li>
+{{--                                <li>--}}
+{{--                                    <div class="item-thumb">--}}
+
+{{--                                        <div class="image">--}}
+{{--                                            <img class="img-fluid" src="images/product_images/product_image_03.jpg" alt="Product Image">--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="item-detail">--}}
+{{--                                        <h2>Crytal Wedding Function Rings</h2>--}}
+{{--                                        <span class="item-s">4 x $85.00 <i class="fas fa-trash"></i></span>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
                                 <li>
-                                <span class="item-summary">Total&nbsp;:&nbsp;<span>$910.00</span>
+                                <span class="item-summary">{{ __('messages.Итог') }}&nbsp;:&nbsp;<span>${{$total}}</span>
                                 </span>
                                 </li>
                                 <li>
-                                    <a class="btn btn-link btn-block " href="cart-page1.html">View Cart</a>
-                                    <a class="btn btn-secondary btn-block  swipe-to-top" href="checkout.html">Checkout</a>
+                                    <a class="btn btn-link btn-block " href="{{ route('cart.cart') }}">{{ __('messages.корзина') }}</a>
+                                    <a class="btn btn-secondary btn-block  swipe-to-top" href="{{ route('checkout') }}">{{ __('messages.оформления_заказа') }}</a>
                                 </li>
                             </ul>
 
@@ -1045,6 +1099,28 @@
                         </div>
                     </div>
                 </div>
+
+                @endauth
+
+                @guest
+                    <div class="col-2 pl-0">
+                        <div class="cart-dropdown dropdown">
+                            <a class="cart-dropdown-toggle" href="{{  route('login')}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                <span class="badge badge-secondary">0</span>
+
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="headerOneCartButton">
+                                <ul class="shopping-cart-items">
+                                            <li>
+                                                <a class="btn btn-link btn-block " href="{{ route('login') }}">{{ __('messages.корзина') }}</a>
+                                            </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                @endguest
+
             </div>
         </div>
     </div>

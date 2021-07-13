@@ -9,10 +9,13 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "bumbummen99/shoppingcart": "^3.0",
         "darryldecode/cart": "^4.1",
+        "davide-casiraghi/laravel-cards": "^2.1",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",
+        "riesenia/cart": "^3.0",
         "tcg/voyager": "^1.3"
     },
     "require-dev": {

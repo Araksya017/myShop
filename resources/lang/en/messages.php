@@ -9,27 +9,46 @@ return [
     'профиль'=>'Profile',
     'личная_страничка'=>'Profile page',
     'войти'=>'Sign in',
+    'моя_страница' => 'My profile',
     'регистрация'=>'Create an account',
     'сравнить'=>'Compare',
     'мои_заказы'=>'Orders',
     'адрес_доставки'=>'Shipping address',
     'выйти'=>'Logout',
     'мой_аккаунт'=>'My account',
+    'моя_корзина'=>'My cart',
+
     'изменить_пароль'=>'Change Password',
+    'изменить'=>'Change',
+    'введите_Ваш_прежний_пароль'=>'Enter Your Old Password',
+    'введите_Ваш_новый_пароль'=>'Enter Your New Password',
     'пол'=>'Gender',
     'мужской'=>'Male',
     'женский'=>'Female',
     'обновить_профиль'=>'Update Profile',
     'введите_ваше_имя'=>'Enter Your First Name',
+    'введите_ваше_полное_имя'=>'Enter Your Fullname',
     'введите_ваше_фамилию'=>'Enter Your Last Name',
     'введите_ваш_электронный_адрес'=>'Enter Your Email',
-    'напишите_свой_номер_телефона'=>'Enter Your Phone Number',
+    'номер_телефона'=>'Phone',
+    'введите_свой_пароль'=>'Enter Your Password',
     'обновить'=>'Update',
+    'Создать_аккаунт'=>'Create Account',
+
+
+    'оформить_заказ'=>'Order Information',
 
     'добро_пожаловать'=>'Welcome Guest!',
+    'Доступ_к_своему_аккаунту_через_социальные_сети' => 'Access Your Account Through Your Social Networks',
 
 
     'добавить_в_список_желаний'=>'Add to Wishlist',
+
+    'добавить_в_корзину'=>'Add to Cart',
+
+    'удалить' => 'Remove',
+
+    'поделиться' => 'Share',
 
     'добавить_к_сравнению'=>'Add to Compare',
 
@@ -40,8 +59,9 @@ return [
     'номер_продукта'=>'Product number :',
 
     'поиск'=>'Search...',
-    'избранное'=>'Wishlist',
+    'Мои_желания'=>'Wishlist',
     'корзина'=>'Shopping Cart',
+//    'корзина'=>'Shopping Cart',
     'главная'=>'Home',
     'вход'=>'Login',
 
@@ -63,6 +83,8 @@ return [
     'Информация'=>'Info',
 
     'товар'=>'Product',
+    'товары'=>'Item(s)',
+
 
     'оформления_заказа'=>'Checkout',
 
@@ -76,11 +98,23 @@ return [
 
     'категории'=>'Categories',
     'все_категории'=>'All categories',
-    'детская_мебель'=>'Furniture',
+    'детская_мебель'=>'Children\'s furniture',
     'постельные_принадлежности'=>'Bedding',
     'детские_игрушки_и_игры'=>'Baby toys',
     'коляски_и_автокресла'=>'Car seats and Strollers',
     'купание_малыша'=>'Baby bathing',
+    'Детская_кресло_качалка'=>'Baby rocking chair',
+    'Балдахины_для_кроваток'=>'Crib canopies',
+    'Бортики_в_кроватку'=>'Bumpers in the crib',
+    'Наматрасники'=>'Mattress covers',
+    'Постельное_белье'=>'Linens',
+    'Комплекты_в_кроватку'=>'Crib sets',
+    'Манежи'=>'Playpen for children',
+    'Колыбели'=>'Cradles',
+    'Комоды'=>'Chests of drawers',
+    'Кроватки_трансформеры'=>'Transformer beds',
+    'Детские_кроватки'=>'Cribs',
+    'избранное'=>'Favorites',
 
 
     'описание'=>'Description',
@@ -89,6 +123,7 @@ return [
     'фамиля'=>'Last Name',
     'телефон'=>'Phone',
     'адрес'=>'Address',
+    'адрес_ул_дом_кв'=>'Address (street / house / apartment / unit)',
     'тема'=>'Subject',
     'писмо'=>'Message',
     'выберите_страну'=>'Select country',
@@ -96,6 +131,7 @@ return [
     'город'=>'City',
     'Почтовый_индекс'=>'Postal Code',
     'Продолжить'=>'Continue',
+    'Назад' => 'Back',
     'отправить'=>'Send',
     'Общие_запросы_клиентов'=>'General Customer Inquiries',
 
@@ -135,6 +171,39 @@ return [
     'Подписывайтесь_на_нас'=>'Follow Us',
     'Следите_за_нами'=>'Follow Us',
     'вводя_адрес_электронной_почты'=>'By entering your email, you agree to our Terms of Service and Privacy Policy.',
+
+    'Применять' => 'Apply',
+    'Код_купона'  => 'Coupon Code',
+    'Продолжить_покупки' => 'Continue Shopping',
+    'Обновлять' => 'Update',
+    'Итог_заказа' => 'Order Summary',
+    'Промежуточная_цена' => 'Subtotal',
+    'Итог' => 'Total',
+    'Перейти_к_оформлению_заказа' => 'Proceed to checkout',
+    'Войти_или_создать_профиль' => 'Login or Create Profile',
+    'создать_профиль' => 'Create Profile',
+
+    'Забыли_пароль' => 'Forgot Password',
+
+    'Войти' => 'Login',
+    'введите_пароль' => 'Enter Your password',
+    'повторите_пароль' => 'Repeat Your password',
+    'действие' => 'Action',
+    'Редактировать' => 'Edit',
+    'Удалить' => 'Remove',
+    'Персональная_информация' => 'Personal Information',
+    'название_компании' => 'Company Name',
+    'Выберите_страну' => 'Select Country',
+    'Выберите_район' => 'Select Area',
+    'Добавить_адрес' => 'Add Address',
+    'количество' => 'QTY',
+    'фсд' => 'FLat Rate Shipping',
+    'налоги' => 'TAX',
+    'итог_заказа' => 'Order Summary',
+    'выберите_способ_доставки' => 'Please select a prefered shipping method to use on this order',
+
+
+
 
 
 

@@ -6,28 +6,30 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Product;
-
+use App\Category;
 
 use Carbon\Carbon;
-use TCG\Voyager\Traits\Translatable;
 
 class ProductController extends Controller
 {
     public function index($id)
     {
-        dd($id);
-
+//        dd($id);
+        $user = Auth::user();
         $categories = DB::table('categories')->where('parent_id',1)->get();
 //        dd($category);
         $similar = DB::table('categories')->where('name',$id)->get();
-        $products = Product::withTranslation(app()->getLocale())->get();
 
-      //  $single_products= Product::withTranslations()->where('id',$id)->first();
+        $products = Product::withTranslations()->get();
+
+//       $single_products= Product::withTranslations()->where('id',$id)->first();
 
         $single_img=DB::table('products')->where('id',$id)->get();
 
+        $sale_products= DB::table('products')->select()->where('sale',">",0)->take(3)->get();
 
 
 
@@ -46,39 +48,48 @@ class ProductController extends Controller
                 'products'=>$products,
                 'single_img'=>$single_img,
                 'similar'=>$similar,
-
+                'sale_products'=>$sale_products,
+                'user' => $user,
                 ] );
     }
 
     public function show($id)
     {
 
-
+        $user = Auth::user();
         $categories = DB::table('categories')
             ->where('parent_id',1)
             ->get();
 
 
-        $products = Product::withTranslation(app()
-            ->getLocale())
+        $products = Product::withTranslations()
             ->get();
-
+//dd($products);
         $single_products= Product::withTranslations()
             ->join('categories', 'categories.id', '=', 'products.category_id')
-            ->where('products.id',$id)->first();
-           //dd($single_products);
 
-        $similar=Product::withTranslation(app()
-          ->getLocale())
+            ->where('products.id',$id)->first();
+          // dd($single_products);
+
+        $similar=Product::withTranslations()
           ->where('category_id',$single_products->category_id)
           ->get();
-//        dd($similar);
+       // dd($similar);
 
         $single_img=DB::table('products')
-            ->where('id',$id)
+
+           ->where('id',$id)
+//            ->whereNotNull('singleimg',$id)
             ->get();
 
-        //dd($single_img);
+        $sale_products= DB::table('products')->select()
+            ->where('sale',">",0)
+            ->take(3)
+            ->get();
+
+
+
+//        dd($single_img);
 
         $select = Product::all();
 
@@ -86,7 +97,8 @@ class ProductController extends Controller
 
 
 // Loads all translations
-        $select = Product::withTranslations()->get();
+        $select = Product::withTranslations()
+            -> get();
 
         return view('product',
             [
@@ -96,15 +108,10 @@ class ProductController extends Controller
                 'single_products'=>$single_products,
                 'single_img'=>$single_img,
                 'similar'=>$similar,
-
+                'sale_products'=>$sale_products,
+                'user' => $user,
                 ] );
     }
-
-
-
-
-
-
 
     public function singleProduct($id)
 {

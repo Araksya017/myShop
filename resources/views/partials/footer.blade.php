@@ -401,50 +401,6 @@
 <div class="notifications" id="notificationWishlist">Product Added To Wishlist</div>
 <div class="notifications" id="notificationCompare">Product Added To Compare</div>
 
-<div class="switcher">
-    <button type="button" class="btn slide-toggle"><i class="fa fa-cogs" aria-hidden="true"></i></button>
-    <a href="#" class="swticher-rtl">
-        <div class="text ">Use demo with RTL</div>
-        <div class="toggle">
-            <span class="circle "></span>
-        </div>
-
-    </a>
-    <a href="#" class="swticher-boxed ">
-        <div class="text ">Use demo with Box</div>
-        <div class="toggle">
-            <span class="circle"></span>
-        </div>
-    </a>
-
-    <div class="swicher-color">
-        <div class="text "><b>Use demo with Colors</b></div>
-        <ul id="switchColor" >
-            <li class="active">
-                <a href="#" id="default"><img src="images/colors/default.png" alt="icon"></a>
-            </li>
-            <li>
-                <a href="#" id="yellow"><img src="images/colors/yellow.png" alt="icon"></a>
-            </li>
-            <li>
-                <a href="#" id="blue"><img src="images/colors/blue.png" alt="icon"></a>
-            </li>
-            <li>
-                <a href="#" id="green"><img src="images/colors/green.png" alt="icon"></a>
-            </li>
-            <li>
-                <a href="#" id="navy-blue"><img src="images/colors/navy-blue.png" alt="icon"></a>
-            </li>
-            <li>
-                <a href="#" id="red"><img src="images/colors/red.png" alt="icon"></a>
-            </li>
-            <li>
-                <a href="#" id="pink"><img src="images/colors/pink.png" alt="icon"></a>
-            </li>
-        </ul>
-        <div class="text mt-2 mb-0">Note: Template built with sass, you can use desire primary and secondary colors of your choice.</div>
-    </div>
-</div>
 
 
 
@@ -468,5 +424,4 @@
 
 
 
-</body>
-</html>
+

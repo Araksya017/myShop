@@ -21,11 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('usersale')->nullable();
             $table->string('cupon')->nullable();
             $table->string('point')->nullable();
-
+            $table->string('avatar')->default('default.jpg')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('img')->nullable();
+            $table->string('img')->default('default.jpg')->nullable();
             $table->string('adress');
             $table->string('phone');
             $table->string('post')->nullable();

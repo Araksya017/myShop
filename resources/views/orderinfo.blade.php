@@ -7,7 +7,7 @@
         <div class="row">
             <div class="pro-heading-title">
                 <h1>
-                    Order Information
+                    {{ __('messages.оформить_заказ') }}
                 </h1>
             </div>
         </div>
@@ -18,39 +18,39 @@
 
                 <ul class="list-group mb-4">
                     <li class="list-group-item">
-                        <a class="nav-link" href="profile.html">
+                        <a class="nav-link" href="{{ route('login') }}">
                             <i class="fas fa-user"></i>
-                            Profile
+                            {{ __('messages.профиль') }}
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="wishlist.html">
+                        <a class="nav-link" href="{{ route('wishlist') }}">
                             <i class="fas fa-heart"></i>
-                            Wishlist
+                            {{ __('messages.Мои_желания') }}
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="orders.html">
+                        <a class="nav-link" href="{{ route('order') }}">
                             <i class="fas fa-shopping-cart"></i>
-                            Orders
+                            {{ __('messages.мои_заказы') }}
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="shipping-address.html">
+                        <a class="nav-link" href="{{ route('adress') }}">
                             <i class="fas fa-map-marker-alt"></i>
-                            Shipping Address
+                            {{ __('messages.адрес_доставки') }}
                         </a>
                     </li>
                     <li class="list-group-item">
                         <a class="nav-link" href="#">
                             <i class="fas fa-power-off"></i>
-                            Logout
+                            {{ __('messages.выйти') }}
                         </a>
                     </li>
                     <li class="list-group-item">
                         <a class="nav-link" href="change-password.html">
                             <i class="fas fa-unlock-alt"></i>
-                            Change Password
+                            {{ __('messages.изменить_пароль') }}
                         </a>
                     </li>
                 </ul>

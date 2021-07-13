@@ -41,7 +41,16 @@
                                     <label>{{ __('messages.категории') }}</label>
                                     <div class="select-control">
                                         <select class="form-control ">
-                                            <option value="1">{{ __('messages.детская_мебель') }}</option>
+                                            <option value="1">{{ __('messages.детская_мебель') }} </option>
+
+{{--                                                 <option value="1.1">{{ __('messages.Детские_кроватки') }}</option>--}}
+{{--                                                 <option value="1.2">{{ __('messages.Кроватки_трансформеры') }}</option>--}}
+{{--                                                 <option value="1.3">{{ __('messages.Колыбели') }}</option>--}}
+{{--                                                 <option value="1.4">{{ __('messages.Манежи') }}</option>--}}
+{{--                                                 <option value="1.5">{{ __('messages.Комоды') }}</option>--}}
+{{--                                                 <option value="1.6">{{ __('messages.Детская_кресло_качалки') }}</option>--}}
+
+
 
                                             <option value="2">{{ __('messages.постельные_принадлежности') }}</option>
                                             <option value="3">{{ __('messages.детские_игрушки_и_игры') }}</option>
@@ -96,6 +105,9 @@
                                     </div>
                                 </div>
 
+                                <li><a class=" brands-btn" href="{{route('shop.shop',['category' =>  __('messages.детская_мебель'), 'name' => request()->name ])}}" role="button">
+                                        <i class="fas fa-angle-right"></i>{{ __('messages.детская_мебель') }}</a></li>
+
 {{--                                <div class="form-group">--}}
 {{--                                    <label>Items</label>--}}
 {{--                                    <div class="select-control">--}}
@@ -134,12 +146,19 @@
                         <div id="collapseOne" class="collapse show" aria-labelledby="CardOne" data-parent="#accordionExample1">
                             <div class="card-body">
                                 <ul  class="brands">
-                                  <li><a class=" brands-btn" href="{{ route('shop.shop') }}" role="button"><i class="fas fa-angle-right"></i>{{ __('messages.смотреть_все') }}</a></li>
-                                    <li><a class=" brands-btn" href="#" role="button"><i class="fas fa-angle-right"></i>{{ __('messages.детская_мебель') }}</a></li>
-                                    <li><a class="  brands-btn" href="#" role="button"><i class="fas fa-angle-right"></i>{{ __('messages.постельные_принадлежности') }}</a></li>
-                                    <li><a class=" brands-btn" href="#" role="button"><i class="fas fa-angle-right"></i>{{ __('messages.детские_игрушки_и_игры') }}</a></li>
-                                    <li><a class=" brands-btn" href="#" role="button"><i class="fas fa-angle-right"></i>{{ __('messages.коляски_и_автокресла') }}</a></li>
-                                    <li><a class=" brands-btn" href="#" role="button"><i class="fas fa-angle-right"></i>{{ __('messages.купание_малыша') }} </a></li>
+                                    <li><a class=" brands-btn" href="{{ route('shop.shop') }}" role="button"><i class="fas fa-angle-right"></i>{{ __('messages.смотреть_все') }}</a></li>
+
+
+                                    <li><a class=" brands-btn" href="{{route('shop.shop',['category' =>  __('messages.детская_мебель'), 'name' => request()->name ])}}" role="button">
+                                            <i class="fas fa-angle-right"></i>{{ __('messages.детская_мебель') }}</a></li>
+                                    <li><a class="  brands-btn" href="{{route('shop.shop',['category' =>  __('messages.постельные_принадлежности'), 'name' => request()->name ])}}" role="button">
+                                            <i class="fas fa-angle-right"></i>{{ __('messages.постельные_принадлежности') }}</a></li>
+                                    <li><a class=" brands-btn" href="{{route('shop.shop',['category' =>  __('messages.детские_игрушки_и_игры'), 'name' => request()->name ])}}" role="button">
+                                            <i class="fas fa-angle-right"></i>{{ __('messages.детские_игрушки_и_игры') }}</a></li>
+                                    <li><a class=" brands-btn" href="{{route('shop.shop',['category' =>  __('messages.коляски_и_автокресла'), 'name' => request()->name ])}}" role="button">
+                                            <i class="fas fa-angle-right"></i>{{ __('messages.коляски_и_автокресла') }}</a></li>
+                                    <li><a class=" brands-btn" href="{{route('shop.shop',['category' =>  __('messages.купание_малыша'), 'name' => request()->name ])}}" role="button">
+                                            <i class="fas fa-angle-right"></i>{{ __('messages.купание_малыша') }} </a></li>
                                 </ul>
                             </div>
                         </div>
@@ -258,34 +277,73 @@
 
 
                                             <div class="pro-thumb ">
+
+
                                                 <div class="pro-icons mobile-pro-icons d-lg-none d-xl-none">
-                                                    <a href="wishlist.html" class="icon active swipe-to-top">
+                                                    <a href="{{ route('wishlist') }}" class="icon active swipe-to-top">
                                                         <i class="fas fa-heart"></i>
                                                     </a>
                                                     <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
                                                         <i class="fas fa-eye"></i>
                                                     </div>
-                                                    <a href="compare.html" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
+                                                    <a href="{{ route('compare') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
                                                 </div>
 
                                                 <a href="{{ route('product.index', $item->id)}}">
                                                     <span class="pro-image"><img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image"></span>
                                                     <span class="pro-image-hover swipe-to-top  d-none d-lg-block d-xl-block"><img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image"></span>
                                                 </a>
+
+                                                @auth
                                                 <div class="pro-buttons d-none d-lg-block d-xl-block">
                                                     <div class="pro-icons">
-                                                        <a href="wishlist.html" class="icon active swipe-to-top">
+{{--                                                        <a href="{{route('create.wish')}}" class="icon active swipe-to-top">--}}
+
+                                                        <form action="{{route('create.wish')}}" method="post" >
+                                                            @csrf
+                                                            <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                            <input type="hidden" name="user_id" value="{{$user->id}}">
+
+                                                            <button  style="background: transparent; border: none; outline: none; color: #fff"><a  class="icon active swipe-to-top"></a></button>
+
+                                                        </form>
                                                             <i class="fas fa-heart"></i>
-                                                        </a>
+
                                                         <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
                                                             <i class="fas fa-eye"></i>
                                                         </div>
-                                                        <a href="compare.html" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
+                                                        <a href="{{ route('compare') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
                                                     </div>
-
-
-                                                    <button type="button" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();">{{ __('messages.в_корзину') }}</button>
+{{--                                                    <button type="button" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();">{{ __('messages.в_корзину') }}</button>--}}
+                                                    <form action="{{route('create.create')}}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                        <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                        <input type="hidden" name="count" value="1">
+                                                        <input type="hidden" name="color" value="">
+                                                        <input type="hidden" name="size" value="">
+                                                        <button  style="background: transparent; border: none; outline: none; color:#ffffff"><a  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
+                                                    </form>
                                                 </div>
+
+                                                @endauth
+
+                                                @guest
+                                                    <div class="pro-buttons d-none d-lg-block d-xl-block">
+                                                        <div class="pro-icons">
+
+                                                            <a  href="{{ route('login') }}" class="icon active swipe-to-top">
+
+                                                                <i class="fas fa-heart"></i>
+                                                            </a>
+                                                            <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
+                                                                <i class="fas fa-eye"></i>
+                                                            </div>
+                                                            <a href="{{ route('login') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
+                                                        </div>
+                                                        <button style="background: transparent; border: none; outline: none" ><a href="{{ route('login') }}"  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
+                                                    </div>
+                                                @endguest
 
                                             </div>
                                             <div class="pro-description"            style="word-wrap: break-word;
@@ -338,7 +396,17 @@
 
                                                 </div>
                                                 <div class="pro-mobile-buttons d-lg-none d-xl-none">
-                                                    <button type="button" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();">{{ __('messages.в_корзину') }}</button>
+{{--                                                    <button type="button" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();">{{ __('messages.в_корзину') }}</button>--}}
+
+                                                    <form action="{{route('create.create')}}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                        <input type="hidden" name="user_id" value="1">
+                                                        <input type="hidden" name="count" value="1">
+                                                        <input type="hidden" name="color" value="">
+                                                        <input type="hidden" name="size" value="">
+                                                        <button  style="background: transparent; border: none; outline: none"><a  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
+                                                    </form>
 
 
                                                 </div>
@@ -363,7 +431,7 @@
                 <div class="pagination justify-content-between ">
 
 
-                    <label  class="col-form-label">Showing 1&ndash;<span class="showing_record">1</span>&nbsp;of&nbsp;<span class="showing_total_record">23</span>&nbsp;results.</label>
+{{--                    <label  class="col-form-label">Showing 1&ndash;<span class="showing_record">1</span>&nbsp;of&nbsp;<span class="showing_total_record">23</span>&nbsp;results.</label>--}}
                     <div class="col-12 col-sm-6">
 
                        <ol class="loader-page">

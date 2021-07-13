@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Category;
 use App\Product;
+use TCG\Voyager\Traits\Translatable;
 
 class CategoryController extends Controller
 {
@@ -24,12 +25,13 @@ class CategoryController extends Controller
 // Loads all translations
         $select = Category::withTranslations()->get();
 
-        $name =Category::withTranslation(app()->getLocale())
+        $name =Category::withTranslations()
 //          ->where('id',$id)
             ->join('products', 'products.id', '=', 'categories.products_id')
-         ->select('products.*', 'categories.name')
-//
-            ->get();
+            ->select('products.*', 'categories.name')
+
+         ->get();
+
 
 
         return view('category',
@@ -64,11 +66,23 @@ class CategoryController extends Controller
         $current = Carbon::now();
 
         DB::table('categories')->insert(
-            [  'name'=> $request -> name_ru,'lang_id'=>1,'name_id'=>0,'created_at'=>$current,'updated_at'=>$current]
+            [
+                'name' => $request -> name_ru,
+                'lang_id' => 1,
+                'name_id' => 0,
+                'created_at' => $current,
+                'updated_at' => $current
+            ]
         );
-        $id = DB::getPdo()->lastInsertId();
-        DB::table('category')->insert(
-            [ 'name'=>$request->name_en,'lang_id'=>2,'name_id'=>$id,'created_at'=>$current,'updated_at'=>$current]
+        $id = DB::getPdo() -> lastInsertId();
+        DB::table('category') -> insert(
+            [
+                'name' => $request->name_en,
+                'lang_id' => 2,
+                'name_id' => $id,
+                'created_at' => $current,
+                'updated_at' => $current
+            ]
         );
         return back();
     }
