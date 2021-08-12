@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="{{ route('cart.cart') }}">
+                        <a class="nav-link" href="{{ route('order') }}">
                             <i class="fas fa-shopping-cart"></i>
                             {{ __('messages.мои_заказы') }}
                         </a>
@@ -159,26 +159,26 @@
                             <button type="submit" class="btn btn-secondary mt-3 swipe-to-top">{{ __('messages.обновить') }}</button>
 
                         </div>
-                        <div class="col-12 col-md-5">
-                            <ul>
-                                <li>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </li>
-                                <li>
-                                    Aliquam ac mi ultricies, congue ex vel, aliquam nisi.
-                                </li>
-                                <li>
-                                    Cras ultrices felis at elit luctus, eget venenatis lacus luctus.
-                                    Cras vel nisl non ligula euismod elementum.
-                                </li>
-                                <li>
-                                    Curabitur volutpat risus ornare justo eleifend, id imperdiet neque iaculis.
-                                    Etiam sagittis eros id rhoncus bibendum.
-                                    Phasellus et arcu in magna congue fermentum.
-                                </li>
+{{--                        <div class="col-12 col-md-5">--}}
+{{--                            <ul>--}}
+{{--                                <li>--}}
+{{--                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    Aliquam ac mi ultricies, congue ex vel, aliquam nisi.--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    Cras ultrices felis at elit luctus, eget venenatis lacus luctus.--}}
+{{--                                    Cras vel nisl non ligula euismod elementum.--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    Curabitur volutpat risus ornare justo eleifend, id imperdiet neque iaculis.--}}
+{{--                                    Etiam sagittis eros id rhoncus bibendum.--}}
+{{--                                    Phasellus et arcu in magna congue fermentum.--}}
+{{--                                </li>--}}
 
-                            </ul>
-                        </div>
+{{--                            </ul>--}}
+{{--                        </div>--}}
 
                     </div>
                 </form>

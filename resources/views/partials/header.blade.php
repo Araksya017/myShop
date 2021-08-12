@@ -4,13 +4,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Katora&nbsp;&minus;&nbsp;Bootstrap Multipurpose Shopping Template</title>
+    <title>MY SHOP&nbsp;&minus;&nbsp;Online Store - Everything For Newborns</title>
     <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed nibh vel tellus tincidunt molestie. Ut in libero ac elit pharetra auctor a eget nunc.">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta name="author" content="">
 
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
 
 
     <link rel="icon" type="image/png" href="images/miscellaneous/fav.png">
@@ -26,6 +29,45 @@
     <link rel="stylesheet" type="text/css" href="/css/layers.css">
     <link rel="stylesheet" type="text/css" href="/css/navigation.css">
 
+    {{--   for range slider in shop.blade--}}
+  <style>
+        .slidecontainer {
+            width: 100%;
+        }
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 25px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+        .slider:hover {
+            opacity: 1;
+        }
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #B38741;
+            cursor: pointer;
+        }
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #04AA6D;
+            cursor: pointer;
+        }
+    .pagination {
+        border: none;
+    }
+
+   </style>
+
+
 
 </head>
 
@@ -40,10 +82,10 @@
         <div class="container">
             <div class="pro-description">
                 <div class="pro-info">
-                    Get<strong> UPTO 40% OFF </strong>on your 1st order
+                    {{ __('messages.Получите') }} <strong>{{ __('messages.СКИДКУ') }} </strong>{{ __('messages.на_ваш') }}
                     <div class="pro-link-dropdown js-toppanel-link-dropdown">
-                        <a href="shop-page1.html" class="pro-dropdown-toggle">
-                            More details
+                        <a href="{{ route('shop.shop') }}" class="pro-dropdown-toggle">
+                            {{ __('messages.Подробнее') }}
                         </a>
 
                     </div>
@@ -61,7 +103,7 @@
             <div class="row align-items-center">
 
                 <div class="col-12 col-md-4 ">
-                    <h4><strong>+7(917)575-97-57</strong></h4>
+                    <h4><strong>+(374)96-223-435</strong></h4>
                 </div>
                 <div class="col-12 col-md-8">
                     <div class="pro-header-options">
@@ -116,7 +158,7 @@
                             <div class="dropdown-menu">
 
                                 <a class="dropdown-item" href="#">{{ __('messages.₽_RUB') }}</a>
-                                <a class="dropdown-item" href="#">{{ __('messages.$ USD') }}</a>
+                                <a class="dropdown-item" href="#">{{ __('messages.$_USD') }}</a>
 
 
                             </div>
@@ -135,7 +177,8 @@
             <div class="row align-items-center">
                 <div class="col-12 col-sm-12 col-lg-2">
                     <a href="{{  route('home.home')}}" class="logo" data-toggle="tooltip" data-placement="bottom" title="logo" >
-                        <img class="img-fluid" src="images/logo/logo.png"  alt="logo here">
+{{--                        <img class="img-fluid" src="public/images/logo.jpg"  alt="logo here">--}}
+                        <img src="{{ asset('/images/logo.png') }}" alt="logo" />
                     </a>
                 </div>
 
@@ -453,7 +496,7 @@
                                     </li>
                                     <li>
                                         <a class="btn  btn-link btn-block " href="{{ route('cart.cart') }}">{{ __('messages.корзина') }}</a>
-                                        <a class="btn btn-secondary btn-block  swipe-to-top" href="{{ route('cart.cart') }}">{{ __('messages.оформления_заказа') }}</a>
+                                        <a class="btn btn-secondary btn-block  swipe-to-top" href="{{ route('checkout') }}">{{ __('messages.оформления_заказа') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -516,7 +559,7 @@
             <div class="row align-items-center">
                 <div class="col-12 col-sm-12 col-lg-2">
                     <a href="{{  route('home.home')}}" class="logo" data-toggle="tooltip" data-placement="bottom" title="logo" >
-                        <img class="img-fluid" src="images/logo/logo.png"  alt="logo here">
+                        <img class="img-fluid" src="{{ asset('/images/logo.png') }}"  alt="logo here">
                     </a>
                 </div>
 
@@ -816,10 +859,10 @@
         <div class="container">
             <div class="pro-description">
                 <div class="pro-info">
-                    Get<strong> UPTO 40% OFF </strong>on your 1st order
+                    {{ __('messages.Получите') }} <strong>{{ __('messages.СКИДКУ') }} </strong>{{ __('messages.на_ваш') }}
                     <div class="pro-link-dropdown js-toppanel-link-dropdown">
-                        <a href="shop-page1.html" class="pro-dropdown-toggle">
-                            More details
+                        <a href="{{ route('shop.shop') }}" class="pro-dropdown-toggle">
+                            {{ __('messages.Подробнее') }}
                         </a>
 
                     </div>
@@ -883,7 +926,7 @@
 
                             </div>
 
-                            <a class="main-manu btn" data-toggle="collapse" href="{{ route('home.home') }}" role="button" aria-expanded="false" aria-controls="shoppages">
+                            <a class="main-manu btn"  href="{{ route('home.home') }}" role="button" >
                                 {{ __('messages.главная') }}
 
                             </a>
@@ -903,7 +946,7 @@
 {{--                                </ul>--}}
 {{--                            </div>--}}
 
-                            <a class="main-manu btn" data-toggle="collapse" href="{{ route('shop.shop') }}" role="button" aria-expanded="false" aria-controls="shoppages">
+                            <a class="main-manu btn"  href="{{ route('shop.shop') }}" role="button" >
                                 {{ __('messages.каталог') }}
 
                             </a>
@@ -929,17 +972,18 @@
                                 </ul>
                             </div>
 
-                            <a class=" main-manu btn" data-toggle="collapse" href="{{ route('sale') }}" role="button" aria-expanded="false" aria-controls="productpages">
+                            <a class=" main-manu btn"  href="{{ route('sale') }}" role="button" >
                                 {{ __('messages.акции') }}
-
                             </a>
 
-
-
-                            <a class=" main-manu btn" data-toggle="collapse" href="{{ route('contact.us') }}" role="button" aria-expanded="false" aria-controls="staticpages">
-                                {{ __('messages.помощ') }}
-
+                            <a class=" main-manu btn"  href="{{ route('new') }}" role="button" >
+                                {{ __('messages.новинки') }}
                             </a>
+
+{{--                            <a class=" main-manu btn" data-toggle="collapse" href="#staticpages" role="button" aria-expanded="false" aria-controls="staticpages">--}}
+{{--                                {{ __('messages.помощ') }}--}}
+{{--                            </a>--}}
+
                             <div class="sub-manu collapse multi-collapse" id="staticpages">
                                 <ul class="unorder-list">
                                     <li class="">
@@ -950,7 +994,7 @@
 
 
 
-                                        <a class="main-manu btn " data-toggle="collapse" href="{{ route('contact.us') }}" role="button" aria-expanded="false" aria-controls="staticcontact">
+                                        <a class="main-manu btn "  href="{{ route('contact.us') }}" >
                                             {{ __('messages.связаться_с_нами') }}
 
                                         </a>
@@ -1026,7 +1070,7 @@
 
                 <div class="col-8">
                     <a href="{{  route('home.home')}}" class="logo" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="logo">
-                        <img class="img-fluid" src="images/logo/logo.png" alt="logo here">
+                        <img class="img-fluid" src="{{ asset('/images/logo.png') }}" alt="logo here">
                     </a>
                 </div>
 

@@ -8,20 +8,16 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="pro-heading-title">
-                <h1>
+                <h1 style="color: #B38741">
                     {{ __('messages.добро_пожаловать_в') }}
                 </h1>
             </div>
         </div>
         <div class="row ">
             <div class="col-12">
-                <img class="img-fluid" src="images/about-us/full-width.jpg" alt="full banner">
+                <img class="img-fluid" src="/images/full-width.jpg" alt="full banner">
                 <p class="pro-pera">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at nisi eget eros pulvinar ultricies. Mauris finibus elit id nunc interdum sollicitudin. Mauris a mi at diam feugiat facilisis a ut nunc. Morbi sit amet erat vel ligula fermentum luctus. Etiam sed sollicitudin justo. Vestibulum auctor aliquet dui, a vestibulum nibh semper id. Sed non ornare lorem. Pellentesque non consequat tellus. Ut lacinia, neque gravida sollicitudin interdum, augue arcu bibendum purus, a accumsan tortor elit a libero. In tristique, nunc rutrum sagittis porta, dolor leo rutrum quam, et pharetra lectus velit sed lectus. Nullam vel nisl eu leo placerat fringilla sed nec enim. Vestibulum at lectus dapibus, pulvinar tellus sed, ultrices orci. Cras eros diam, laoreet eget vestibulum a, convallis quis tortor. Phasellus scelerisque purus eget vehicula maximus.
-
-                    Ut elit ex, lacinia quis ultricies vel, eleifend et lacus. Pellentesque hendrerit accumsan sapien eget interdum. Donec rhoncus felis a lacus suscipit eleifend ornare scelerisque erat. Ut mollis urna in lobortis tempus. Phasellus lobortis sed ipsum eu molestie. Maecenas placerat enim vitae rutrum maximus. Sed nunc urna, porta eget tristique eu, ornare at justo. Cras sit amet nibh vel odio ornare accumsan. Sed maximus aliquam porttitor. Morbi lacinia ipsum vel magna malesuada, at malesuada massa convallis. Quisque tristique orci sem, non molestie nulla vestibulum ut. Aenean ac fringilla lacus. Donec aliquam hendrerit imperdiet. Morbi ut urna ligula. Duis ut nibh a ligula consequat mattis sed at justo. Donec blandit neque et nisl aliquam, non tempor purus feugiat.
-
-                    Integer sit amet varius elit. Pellentesque pulvinar cursus nulla, non rutrum risus iaculis sit amet. Quisque rhoncus nibh porta eros sagittis, nec porta nibh pulvinar. Curabitur laoreet, quam vehicula hendrerit pretium, ipsum sem feugiat eros, ut vulputate nisi risus eget ante. Integer a massa id magna condimentum eleifend. Praesent porta tellus sit amet efficitur semper. In vitae est a ex tincidunt efficitur.
+                    {{ __('messages.о_нас') }}
                 </p>
             </div>
         </div>

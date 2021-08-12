@@ -54,17 +54,17 @@
                                 </div>
 
 
-                                <div class="form-group ">
-                                    <label>{{ __('messages.цена') }}</label>
-                                    <div class="select-control">
-                                        <select class="form-control ">
+{{--                                <div class="form-group ">--}}
+{{--                                    <label>{{ __('messages.цена') }}</label>--}}
+{{--                                    <div class="select-control">--}}
+{{--                                        <select class="form-control ">--}}
 
-                                            <option value="1">$1001-$2500</option>
-                                            <option value="2">$501-$1000</option>
-                                            <option value="3">0-$500</option>
-                                        </select>
-                                    </div>
-                                </div>
+{{--                                            <option value="1">$1001-$2500</option>--}}
+{{--                                            <option value="2">$501-$1000</option>--}}
+{{--                                            <option value="3">0-$500</option>--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 {{--                                <div class="form-group ">--}}
                                 {{--                                    <label>{{ __('messages.размер') }}</label>--}}
                                 {{--                                    <div class="select-control">--}}
@@ -83,18 +83,18 @@
                         <div class="col-12 col-lg-4">
                             <form class="form-inline justify-content-end">
 
-{{--                                <div class="form-group">--}}
-{{--                                    <label>{{ __('messages.сортировать_по') }}</label>--}}
-{{--                                    <div class="select-control">--}}
-{{--                                        <select class="form-control ">--}}
+                                <div class="form-group">
+                                    <label>{{ __('messages.сортировать_по') }}</label>
+                                    <div class="select-control">
+                                        <select class="form-control ">
 
-{{--                                            <option selected>{{ __('messages.новинки') }}</option>--}}
-{{--                                            <option  value="1">{{ __('messages.популярные') }}</option>--}}
-{{--                                            <option value="2">{{ __('messages.акции') }}</option>--}}
-{{--                                            --}}{{--                                            <option value="3">{{ __('messages.размер') }}</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                            <option selected>{{ __('messages.новинки') }}</option>
+                                            <option  value="1">{{ __('messages.популярные') }}</option>
+                                            <option value="2">{{ __('messages.акции') }}</option>
+{{--                                                                                        <option value="3">{{ __('messages.размер') }}</option>--}}
+                                        </select>
+                                    </div>
+                                </div>
 
                                 {{--                                <div class="form-group">--}}
                                 {{--                                    <label>Items</label>--}}
@@ -155,17 +155,11 @@
 
                         <div id="collapseTwo" class="collapse show" aria-labelledby="CardTwo" data-parent="#accordionExample2">
                             <div class="card-body">
-                                <ul  class="brands">
-                                    <li><a class=" brands-btn" href="#" role="button">$10-$100
-                                        </a></li>
-                                    <li><a class="  brands-btn" href="#" role="button">$100-$200
-                                        </a></li>
-                                    <li><a class=" brands-btn" href="#" role="button">$200-$300
-                                        </a></li>
-                                    <li><a class=" brands-btn" href="#" role="button">$300-$400
-                                        </a></li>
-                                    <li><a class=" brands-btn" href="#" role="button">$400-$500</a></li>
-                                </ul>
+                                <div class="slidecontainer">
+                                    <input type="range" min="10" max="30000" value="5000" class="slider" id="myRange">
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -234,7 +228,7 @@
                 {{--                </div>--}}
 
                 <div class="img-main">
-                    <a href="shop-page1.html" ><img class="img-fluid" src="images/shop/side-image.jpg" alt="shop Image"></a>
+                    <a href="{{ route('new') }}" ><img class="img-fluid" src="{{ Voyager::image($shopimg_sales->img) }}" alt="shop Image"></a>
 
                 </div>
             </div>
@@ -258,45 +252,91 @@
 
 
                                                 <div class="pro-thumb ">
-                                                    <div class="pro-icons mobile-pro-icons d-lg-none d-xl-none">
-                                                        <a href="wishlist.html" class="icon active swipe-to-top">
-                                                            <i class="fas fa-heart"></i>
-                                                        </a>
-                                                        <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
-                                                            <i class="fas fa-eye"></i>
-                                                        </div>
-                                                        <a href="compare.html" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
-                                                    </div>
 
-                                                    <a href="{{ route('sale.sale', $item->id)}}">
-                                                        <span class="pro-image"><img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image"></span>
-                                                        <span class="pro-image-hover swipe-to-top  d-none d-lg-block d-xl-block"><img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image"></span>
-                                                    </a>
-                                                    <div class="pro-buttons d-none d-lg-block d-xl-block">
-                                                        <div class="pro-icons">
-                                                            <a href="wishlist.html" class="icon active swipe-to-top">
+                                                    @auth
+                                                        <div class="pro-icons mobile-pro-icons d-lg-none d-xl-none" >
+
+                                                            <form action="{{route('create.wish')}}" method="post" >
+                                                                @csrf
+                                                                <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                                <input type="hidden" name="user_id" value="{{$user->id}}">
+
+                                                                <button  style="background: transparent; border: none; outline: none; color: #fff"><a  class="icon active swipe-to-top"><i class="fas fa-heart"></i></a></button>
+
+                                                            </form>
+                                                            <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
+                                                                <i class="fas fa-eye"></i>
+                                                            </div>
+                                                            <a href="{{ route('compare') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
+                                                        </div>
+                                                    @endauth
+
+                                                    @guest
+                                                        <div class="pro-icons mobile-pro-icons d-lg-none d-xl-none">
+                                                            <a href="{{ route('login') }}" class="icon active swipe-to-top">
                                                                 <i class="fas fa-heart"></i>
                                                             </a>
                                                             <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
                                                                 <i class="fas fa-eye"></i>
                                                             </div>
-                                                            <a href="compare.html" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
+                                                            <a href="{{ route('login') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
                                                         </div>
+                                                    @endguest
+
+                                                    <a href="{{ route('sale.sale', $item->id)}}">
+                                                        <span class="pro-image"><img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image"></span>
+                                                        <span class="pro-image-hover swipe-to-top  d-none d-lg-block d-xl-block"><img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image"></span>
+                                                    </a>
+                                                        @auth
+                                                            <div class="pro-buttons d-none d-lg-block d-xl-block">
+                                                                <div class="pro-icons">
+                                                                    {{--                                                        <a href="{{route('create.wish')}}" class="icon active swipe-to-top">--}}
+
+                                                                    <form action="{{route('create.wish')}}" method="post" >
+                                                                        @csrf
+                                                                        <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                                        <input type="hidden" name="user_id" value="{{$user->id}}">
+
+                                                                        <button  style="background: transparent; border: none; outline: none; color: #fff"><a  class="icon active swipe-to-top"><i class="fas fa-heart"></i></a></button>
+
+                                                                    </form>
 
 
-{{--                                                        <button type="button" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();">{{ __('messages.в_корзину') }}</button>--}}
+                                                                    <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
+                                                                        <i class="fas fa-eye"></i>
+                                                                    </div>
+                                                                    <a href="{{ route('compare') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
+                                                                </div>
+                                                                {{--                                                    <button type="button" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();">{{ __('messages.в_корзину') }}</button>--}}
+                                                                <form action="{{route('create.create')}}" method="post">
+                                                                    @csrf
+                                                                    <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                                    <input type="hidden" name="count" value="1">
+                                                                    <input type="hidden" name="color" value="">
+                                                                    <input type="hidden" name="size" value="">
+                                                                    <button  style="background: transparent; border: none; outline: none; color:#ffffff"><a  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
+                                                                </form>
+                                                            </div>
 
-                                                        <form action="{{route('create.create')}}" method="post">
-                                                            @csrf
-                                                            <input type="hidden" name="product_id" value="{{$item->id}}">
-                                                            <input type="hidden" name="user_id" value="1">
-                                                            <input type="hidden" name="count" value="1">
-                                                            <input type="hidden" name="color" value="">
-                                                            <input type="hidden" name="size" value="">
-                                                            <button  style="background: transparent; border: none; outline: none; color:#ffffff"><a  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
-                                                        </form>
+                                                        @endauth
 
-                                                    </div>
+                                                        @guest
+                                                            <div class="pro-buttons d-none d-lg-block d-xl-block">
+                                                                <div class="pro-icons">
+
+                                                                    <a  href="{{ route('login') }}" class="icon active swipe-to-top">
+
+                                                                        <i class="fas fa-heart"></i>
+                                                                    </a>
+                                                                    <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
+                                                                        <i class="fas fa-eye"></i>
+                                                                    </div>
+                                                                    <a href="{{ route('login') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
+                                                                </div>
+                                                                <button style="background: transparent; border: none; outline: none" ><a href="{{ route('login') }}"  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
+                                                            </div>
+                                                        @endguest
 
                                                 </div>
                                                 <div class="pro-description"            style="word-wrap: break-word;
@@ -323,48 +363,28 @@
                                                     <span class="pro-info">
                                      {{ $item->getTranslatedAttribute('description', app()->getLocale())}}
 
-
                                                    </span>
+                                                </div>
 
-                                                    <div class="list2">
-
-                                                        {{--                                                    <div class="pro-options">--}}
-                                                        {{--                                                        <div class="color-selection">--}}
-                                                        {{--                                                            <h4>Color: <span>Silver</span></h4>--}}
-                                                        {{--                                                            <ul>--}}
-                                                        {{--                                                                <li class="active"><a class="green " href="javascript:void(0);" tabindex="0"></a></li>--}}
-                                                        {{--                                                                <li><a class="red " href="javascript:void(0);" tabindex="0"></a></li>--}}
-
-                                                        {{--                                                            </ul>--}}
-                                                        {{--                                                        </div>--}}
-                                                        {{--                                                        <div class="size-selection">--}}
-                                                        {{--                                                            <h4>Size: <span>28</span></h4>--}}
-                                                        {{--                                                            <ul>--}}
-                                                        {{--                                                                <li class="active"><a href="javascript:void(0);" tabindex="0">28</a></li>--}}
-                                                        {{--                                                                <li><a href="javascript:void(0);" tabindex="0">32</a></li>--}}
-
-                                                        {{--                                                            </ul>--}}
-                                                        {{--                                                        </div>--}}
-                                                        {{--                                                    </div>--}}
-
-                                                    </div>
+                                                @auth
                                                     <div class="pro-mobile-buttons d-lg-none d-xl-none">
-{{--                                                        <button type="button" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();">{{ __('messages.в_корзину') }}</button>--}}
-
                                                         <form action="{{route('create.create')}}" method="post">
                                                             @csrf
                                                             <input type="hidden" name="product_id" value="{{$item->id}}">
-                                                            <input type="hidden" name="user_id" value="1">
+                                                            <input type="hidden" name="user_id" value="{{$user->id}}">
                                                             <input type="hidden" name="count" value="1">
                                                             <input type="hidden" name="color" value="">
                                                             <input type="hidden" name="size" value="">
-                                                            <button  style="background: transparent; border: none; outline: none; color:#ffffff"><a  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
+                                                            <button  style="background: transparent; color: white; width: 100%; border: none; outline: none"><a  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
                                                         </form>
-
+                                                    </div>
+                                                @endauth
+                                                @guest
+                                                    <div class="pro-mobile-buttons d-lg-none d-xl-none">
+                                                        <button type="button" style="width: 100%" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();">{{ __('messages.в_корзину') }}</button>{{--                                                    <button type="button" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();"><a href="{{ route('login') }}"  >{{ __('messages.в_корзину') }}</a></button>--}}
 
                                                     </div>
-
-                                                </div>
+                                                @endguest
 
                                             </article>
                                         </div>
@@ -384,7 +404,7 @@
                 <div class="pagination justify-content-between ">
 
 
-                    <label  class="col-form-label">Showing 1&ndash;<span class="showing_record">1</span>&nbsp;of&nbsp;<span class="showing_total_record">23</span>&nbsp;results.</label>
+{{--                    <label  class="col-form-label">Showing 1&ndash;<span class="showing_record">1</span>&nbsp;of&nbsp;<span class="showing_total_record">23</span>&nbsp;results.</label>--}}
                     <div class="col-12 col-sm-6">
 
                         <ol class="loader-page">

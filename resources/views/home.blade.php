@@ -408,7 +408,9 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-12">
                     <div class="pro-heading-title" {{ url('locale/ru')}}>
-                        <h1> {{ __('messages.лучшие_предложения') }}</h1>
+
+                        <h2 style="color: #B38741">{{ __('messages.Добро_пожаловать_в_магазин') }}</h2>
+                        <h1 style="color: #B38741"> {{ __('messages.лучшие_предложения') }}</h1>
 
 
                     </div>
@@ -427,41 +429,56 @@
                             <div class="tab-carousel-js row">
                                 @foreach( $best_products as $item)
 
-                                <div class="col-12 col-md-4 col-lg-3">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                     <div class="product">
                                         <article>
+                                            @auth
+                                            <div class="pro-icons mobile-pro-icons d-lg-none d-xl-none">
+                                                <form action="{{route('create.wish')}}" method="post" >
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                    <button  style="background: transparent; border: none; outline: none; color: #fff"><a  class="icon active swipe-to-top"><i class="fas fa-heart"></i></a></button>
+                                                </form>
+                                                <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
+                                                    <i class="fas fa-eye"></i>
+                                                </div>
+                                                <a href="{{ route('compare') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
+                                            </div>
+                                            @endauth
+
+                                            @guest
+                                            <div class="pro-icons mobile-pro-icons d-lg-none d-xl-none">
+                                                <a href="{{ route('login') }}" class="icon active swipe-to-top">
+                                                    <i class="fas fa-heart"></i>
+                                                </a>
+                                                <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
+                                                    <i class="fas fa-eye"></i>
+                                                </div>
+                                                <a href="{{ route('login') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
+                                            </div>
+                                             @endguest
 
                                             <div class="pro-thumb ">
-
                                                 <a href=" {{ route('product.index', $item->id)}}">
                                                     <span class="pro-image"><img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="Product Image"></span>
                                                     <span class="pro-image-hover swipe-to-top"><img class="img-fluid" src="{{ Voyager::image($item->img) }}" alt="{{ Voyager::image($item->img) }}"></span>
                                                 </a>
 
-
                                                 @auth
                                                 <div class="pro-buttons d-none d-lg-block d-xl-block">
                                                     <div class="pro-icons">
-
                                                             <form action="{{route('create.wish')}}" method="post" >
                                                                 @csrf
                                                                 <input type="hidden" name="product_id" value="{{$item->id}}">
                                                                 <input type="hidden" name="user_id" value="{{$user->id}}">
-
-                                                                <button  style="background: transparent; border: none; outline: none; color: #fff"><a  class="icon active swipe-to-top"></a></button>
-
+                                                                <button  style="background: transparent; border: none; outline: none; color: #fff"><a  class="icon active swipe-to-top"><i class="fas fa-heart"></i></a></button>
                                                             </form>
-
-
-                                                            <i class="fas fa-heart"></i>
-
                                                         <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
                                                             <i class="fas fa-eye"></i>
                                                         </div>
                                                         <a href="{{ route('compare') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
                                                     </div>
-
-
                                                     <form action="{{route('create.create')}}" method="post">
                                                         @csrf
                                                         <input type="hidden" name="product_id" value="{{$item->id}}">
@@ -471,20 +488,13 @@
                                                         <input type="hidden" name="size" value="">
                                                         <button  style="background: transparent; border: none; outline: none"><a  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
                                                     </form>
-
-
                                                 </div>
                                                 @endauth
 
-
-
                                                 @guest
-
                                                 <div class="pro-buttons d-none d-lg-block d-xl-block">
                                                     <div class="pro-icons">
-
                                                            <a  href="{{ route('login') }}" class="icon active swipe-to-top">
-
                                                         <i class="fas fa-heart"></i>
                                                         </a>
                                                         <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
@@ -492,20 +502,15 @@
                                                         </div>
                                                         <a href="{{ route('login') }}" class="icon swipe-to-top"><i class="fas fa-align-right" data-fa-transform="rotate-90"></i></a>
                                                     </div>
-
-
-
                                                         <button style="background: transparent; border: none; outline: none" ><a href="{{ route('login') }}"  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
-
                                                 </div>
-
                                                 @endguest
 
-                                                <div class="pro-tag bg-success">{{ __('messages.новинка') }}</div>
+                                                <div class="pro-tag bg-success" >{{ __('messages.новинка') }}</div>
                                             </div>
-
-                                            <div class="pro-description"    style="word-wrap: break-word;
-                                                                                    height: 100px;
+                                            <div class="pro-description"
+                                                 style="word-wrap: break-word;
+                                                                                    height: 120px;
 
                                                                                     display: block;
                                                                                     display: -webkit-box;
@@ -516,22 +521,36 @@
                                                                                     -webkit-line-clamp: 2;
                                                                                     -webkit-box-orient: vertical;
                                                                                     overflow: hidden;
-                                                                                    text-overflow: ellipsis" >
-
-
+                                                                                    text-overflow: ellipsis">
                                                     <h2 class="pro-title"><a href="{{ route('product.index', $item->id)}}">{{ $item->getTranslatedAttribute('title', app()->getLocale())}}</a></h2>
-
                                                     <div class="pro-price" {{ route('product.index', $item->id)}}>
                                                     <ins>{{$item->price}}</ins>
                                                 </div>
-
-                                                <span class="pro-info"{{ route('product.index', $item->id)}}>
+                                                <span  class="pro-info"{{ route('product.index', $item->id)}}>
                                      {{ $item->getTranslatedAttribute('description', app()->getLocale())}}
-
                                     </span>
 
                                             </div>
+                                                @auth
+                                                    <div class="pro-mobile-buttons d-lg-none d-xl-none">
+                                                        <form action="{{route('create.create')}}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="product_id" value="{{$item->id}}">
+                                                            <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                            <input type="hidden" name="count" value="1">
+                                                            <input type="hidden" name="color" value="">
+                                                            <input type="hidden" name="size" value="">
+                                                            <button  style="background: transparent; width: 100%; border: none; outline: none"><a  class="btn btn-secondary btn-block swipe-to-top">{{ __('messages.в_корзину') }}</a></button>
+                                                        </form>
+                                                    </div>
+                                                @endauth
+                                                @guest
+                                                    <div class="pro-mobile-buttons d-lg-none d-xl-none">
+                                                        <button type="button" style="width: 100%" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();">{{ __('messages.в_корзину') }}</button>
+                                                        {{--                                                    <button type="button" class="btn btn-secondary btn-block swipe-to-top" onclick="notificationCart();"><a href="{{ route('login') }}"  >{{ __('messages.в_корзину') }}</a></button>--}}
 
+                                                    </div>
+                                                @endguest
                                         </article>
                                     </div>
                                 </div>
@@ -583,9 +602,9 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-12">
                     <div class="pro-heading-title">
-                        <h2> {{ __('messages.популярные_товары') }}
+                        <h1 style="color: #B38741"> {{ __('messages.популярные_товары') }}
 
-                        </h2>
+                        </h1>
 {{--                        <p>Vitae posuere urna blandit sed. Praesent ut dignissim risus. </p></div>--}}
                 </div>
             </div>
@@ -643,65 +662,65 @@
 </section>
 
 <!-- Testimonails -->
-<section class="pro-content testimonails-content">
+{{--<section class="pro-content testimonails-content">--}}
 
-    <div class="container">
-        <!-- heading -->
+{{--    <div class="container">--}}
+{{--        <!-- heading -->--}}
 
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-12">
-                <div class="pro-heading-title">
-                    <h2> {{ __('messages.отзывы_наших_клиентов') }}
-                    </h2>
-                    <p>Vitae posuere urna blandit sed. Praesent ut dignissim risus.</p>
-                </div>
-            </div>
-        </div>
-        <div class="testimonials-carousel-js row">
-            <div class="col-12">
-                <figure class="banner-image">
-                    <img class="img-fluid" src="images/about-us/profile.png" alt="Profile Image">
-                </figure>
-                <div class="pro-detail">
-                    <h2><a href="blog-page1.html" >Jeny Martinez</a></h2>
+{{--        <div class="row justify-content-center">--}}
+{{--            <div class="col-12 col-lg-12">--}}
+{{--                <div class="pro-heading-title">--}}
+{{--                    <h2> {{ __('messages.отзывы_наших_клиентов') }}--}}
+{{--                    </h2>--}}
+{{--                    <p>Vitae posuere urna blandit sed. Praesent ut dignissim risus.</p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="testimonials-carousel-js row">--}}
+{{--            <div class="col-12">--}}
+{{--                <figure class="banner-image">--}}
+{{--                    <img class="img-fluid" src="images/about-us/profile.png" alt="Profile Image">--}}
+{{--                </figure>--}}
+{{--                <div class="pro-detail">--}}
+{{--                    <h2><a href="blog-page1.html" >Jeny Martinez</a></h2>--}}
 
-                    <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor
-                        incdidunt ut labore et dolore magna aliqua [....]
-                    </p>
-                    <a href="#" class="pro-readmore" tabindex="0">Read more</a>
-                </div>
-            </div>
+{{--                    <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor--}}
+{{--                        incdidunt ut labore et dolore magna aliqua [....]--}}
+{{--                    </p>--}}
+{{--                    <a href="#" class="pro-readmore" tabindex="0">Read more</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
-            <div class="col-12">
-                <figure class="banner-image">
-                    <img class="img-fluid" src="images/about-us/profile.png" alt="Banner Image">
-                </figure>
-                <div class="pro-detail">
-                    <h2><a href="blog-page1.html" >Theresa May</a></h2>
+{{--            <div class="col-12">--}}
+{{--                <figure class="banner-image">--}}
+{{--                    <img class="img-fluid" src="images/about-us/profile.png" alt="Banner Image">--}}
+{{--                </figure>--}}
+{{--                <div class="pro-detail">--}}
+{{--                    <h2><a href="blog-page1.html" >Theresa May</a></h2>--}}
 
-                    <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor
-                        incdidunt ut labore et dolore magna aliqua [....]
-                    </p>
-                    <a href="#" class="pro-readmore" tabindex="0">Read more</a>
-                </div>
-            </div>
-            <div class="col-12">
-                <figure class="banner-image">
-                    <img class="img-fluid" src="images/about-us/profile.png" alt="Banner Image">
-                </figure>
-                <div class="pro-detail">
-                    <h2><a href="blog-page1.html" >Malissa</a></h2>
+{{--                    <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor--}}
+{{--                        incdidunt ut labore et dolore magna aliqua [....]--}}
+{{--                    </p>--}}
+{{--                    <a href="#" class="pro-readmore" tabindex="0">Read more</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="col-12">--}}
+{{--                <figure class="banner-image">--}}
+{{--                    <img class="img-fluid" src="images/about-us/profile.png" alt="Banner Image">--}}
+{{--                </figure>--}}
+{{--                <div class="pro-detail">--}}
+{{--                    <h2><a href="blog-page1.html" >Malissa</a></h2>--}}
 
-                    <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor
-                        incdidunt ut labore et dolore magna aliqua [....]
-                    </p>
-                    <a href="#" class="pro-readmore" tabindex="0">Read more</a>
-                </div>
-            </div>
+{{--                    <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor--}}
+{{--                        incdidunt ut labore et dolore magna aliqua [....]--}}
+{{--                    </p>--}}
+{{--                    <a href="#" class="pro-readmore" tabindex="0">Read more</a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
-        </div>
-    </div>
-</section>
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 
 
 

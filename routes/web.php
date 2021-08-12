@@ -52,6 +52,9 @@ Route::get('/category','ShopController@singleCategory')->name('category.category
 Route::get('category','ShopController@index')->name('category.index');
 
 
+Route::get('test','TestController@index')->name('test');
+
+
 Route::get('/shop','ShopController@index')->name('shop.shop');
 Route::get('/pagination','ShopController@index')->name('shop.page');
 
@@ -93,11 +96,23 @@ Route::get('/wishlist','WishlistController@index')->name('wishlist');
 
 Route::get('/compare','CompareController@index')->name('compare');
 
-Route::get('/order','OrderController@index')->name('order');
+Route::get('/orders','OrderController@index')->name('order');
 
 Route::get('/adress','adressController@index')->name('adress');
 
 Route::get('/changepsw','ChangepswController@index')->name('changepsw');
+
+Route::get('/privacy','PrivacyController@index')->name('privacy');
+
+Route::get('/refund','RefundController@index')->name('refund');
+
+Route::get('/term','TermController@index')->name('term');
+
+Route::get('/thank_you','ThanksController@index')->name('thanks');
+
+Route::get('/how_to_make_order','Make_orderController@index')->name('make.order');
+
+Route::get('/orders_info','OrderInfoController@index')->name('orders.info');
 
 
 

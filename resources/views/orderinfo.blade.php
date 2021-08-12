@@ -7,7 +7,7 @@
         <div class="row">
             <div class="pro-heading-title">
                 <h1>
-                    {{ __('messages.оформить_заказ') }}
+                    {{ __('messages.Информация_о_заказе') }}
                 </h1>
             </div>
         </div>
@@ -42,13 +42,13 @@
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('logout') }}">
                             <i class="fas fa-power-off"></i>
                             {{ __('messages.выйти') }}
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a class="nav-link" href="change-password.html">
+                        <a class="nav-link" href="{{ route('changepsw') }}">
                             <i class="fas fa-unlock-alt"></i>
                             {{ __('messages.изменить_пароль') }}
                         </a>
@@ -60,17 +60,17 @@
 
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <h4>Order ID 35468430
+                        <h4>{{ __('messages.Идентификатор_заказа') }} 35468430
                         </h4>
 
                         <table class="table order-id">
                             <tbody>
                             <tr class="d-flex">
-                                <td class="col-6 col-md-6 pb-0"><strong>Order Status</strong></td>
+                                <td class="col-6 col-md-6 pb-0"><strong>{{ __('messages.Статус_заказа') }}</strong></td>
                                 <td class="pending col-6 col-md-6 pb-0" ><p>Pending</p></td>
                             </tr>
                             <tr class="d-flex">
-                                <td class="col-6 col-md-6 "><strong>Order Date</strong></td>
+                                <td class="col-6 col-md-6 "><strong>{{ __('messages.Дата_Заказа') }}</strong></td>
                                 <td  class="col-6 col-md-6">28/04/2019</td>
                             </tr>
                             </tbody>
@@ -79,17 +79,17 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <h4>
-                            Payment Methods
+                            {{ __('messages.способы_оплаты') }}
                         </h4>
 
                         <table class="table order-id">
                             <tbody>
                             <tr class="d-flex">
-                                <td class="col-6 pb-0"><strong>Shipping Method</strong> </td>
+                                <td class="col-6 pb-0"><strong>{{ __('messages.Метод_доставки') }}</strong> </td>
                                 <td class="col-6 pb-0">Flat Rate</td>
                             </tr>
                             <tr class="d-flex">
-                                <td class="col-6"><strong>Payment Method</strong> </td>
+                                <td class="col-6"><strong>{{ __('messages.способ_оплаты_2') }}</strong> </td>
                                 <td class="underline col-6">Cash on Delivery</td>
                             </tr>
                             </tbody>
@@ -101,13 +101,13 @@
 
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <h4>Shipping Details
+                        <h4>{{ __('messages.Детали_Доставки') }}
                         </h4>
 
                         <table class="table order-id">
                             <tbody>
                             <tr class="d-flex">
-                                <td class="address col-12 col-md-6 pb-0"><strong>Shipping Address</strong></td>
+                                <td class="address col-12 col-md-6 pb-0"><strong>{{ __('messages.адрес_доставки') }}</strong></td>
 
 
                             </tr>
@@ -121,13 +121,13 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <h4>
-                            Billing Details
+                            {{ __('messages.данные_для_выставления_счета') }}
                         </h4>
 
                         <table class="table order-id">
                             <tbody>
                             <tr class="d-flex">
-                                <td class="address col-12 pb-0"><strong>Shipping Address</strong> </td>
+                                <td class="address col-12 pb-0"><strong>{{ __('messages.адрес_доставки') }}</strong> </td>
                             </tr>
                             <tr  class="d-flex">
                                 <td class="address col-12">Address Details, Near, City Name, Country Name</td>
@@ -142,11 +142,11 @@
                 <table class="table top-table">
                     <thead>
                     <tr class="d-flex">
-                        <th class="col-12 col-md-2">ITEM(S)</th>
+                        <th class="col-12 col-md-2">{{ __('messages.товары1') }}</th>
                         <th class="col-12 col-md-4"></th>
-                        <th class="col-12 col-md-2">PRICE</th>
-                        <th class="col-12 col-md-2">QTY</th>
-                        <th class="col-12 col-md-2">SUBTOTAL</th>
+                        <th class="col-12 col-md-2">{{ __('messages.цена1') }}</th>
+                        <th class="col-12 col-md-2">{{ __('messages.количество') }}</th>
+                        <th class="col-12 col-md-2">{{ __('messages.Промежуточная_цена1') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -175,30 +175,7 @@
                         </td>
                         <td class="col-12 col-md-2"><span class="item-price">$540</span></td>
                     </tr>
-                    <tr class="d-flex">
-                        <td class="col-12 col-md-2" >
-                            <img class="img-fluid" src="images/product_images/product_image_02.jpg" alt="Product Image"/>
-                        </td>
-                        <td class="col-12 col-md-4">
-                            <div class="item-detail">
-                                <span class="pro-info">Earrings</span>
-                                <h2 class="pro-title">
 
-                                    <a href="#">
-                                        Crytal Wedding Engagement Rings
-                                    </a>
-
-                                </h2>
-                                <div class="item-attributes"></div>
-
-                            </div>
-                        </td>
-                        <td class="col-12 col-md-2"><span class="item-price">$85</span></td>
-                        <td class="col-12 col-md-2">
-                            <div class="input-group">4</div>
-                        </td>
-                        <td class="col-12 col-md-2"><span class="item-price">$370</span></td>
-                    </tr>
                     </tbody>
                 </table>
 

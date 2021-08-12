@@ -29,6 +29,8 @@ class HomeController extends BaseController
     public function index(){
 //        dd(Auth::user());
         $user = Auth::user();
+//        $logo = DB::table('homebaners')->where('id','36')->first();
+
         $banners3 = DB::table('homebaners')->orderBy('id','DESC')->take(3)->get();
 
 //dd($banners3);
@@ -38,6 +40,7 @@ class HomeController extends BaseController
         $banners4 = DB::table('homebaners')->where('id','27')->first();
         $banners5 = DB::table('homebaners')->where('id','35')->first();
         $banners6 = DB::table('homebaners')->where('id','25')->first();
+
 
 //dd($banners3);
        // $best_products= DB::table('products')->select()->where('best',1)->take(8)->get();
@@ -72,7 +75,8 @@ class HomeController extends BaseController
                 'sale_products'=>$sale_products,
                 'popular_products'=>$popular_products,
                 'parent_id_categories'=>$parent_id_categories,
-                'user' => $user
+                'user' => $user,
+//                'logo' => $logo
             ]);
 
     }

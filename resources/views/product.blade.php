@@ -241,8 +241,8 @@
                                 <div class="col-12 col-md-12">
                                     <div class="nav nav-pills" role="tablist">
                                         <a class="nav-link nav-item  active" href="#description" id="description-tab" data-toggle="pill">{{ __('messages.описание') }}</a>
-                                        <a class="nav-link nav-item " href="#additionalInfo" id="additional-info-tab" data-toggle="pill" role="tab" >Additional information</a>
-                                        <a class="nav-link nav-item" href="#review" id="review-tab" data-toggle="pill" role="tab" >Reviews</a>
+{{--                                        <a class="nav-link nav-item " href="#additionalInfo" id="additional-info-tab" data-toggle="pill" role="tab" >Additional information</a>--}}
+{{--                                        <a class="nav-link nav-item" href="#review" id="review-tab" data-toggle="pill" role="tab" >Reviews</a>--}}
                                     </div>
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade active show" id="description" aria-labelledby="description-tab">
@@ -443,7 +443,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-6">
                     <div class="pro-heading-title">
-                        <h1> {{ __('messages.похожие_товары') }}
+                        <h1 style="color: #B38741"> {{ __('messages.похожие_товары') }}
                         </h1>
                     </div>
                 </div>
@@ -517,10 +517,10 @@
                                             <input type="hidden" name="product_id" value="{{$item->id}}">
                                             <input type="hidden" name="user_id" value="{{$user->id}}">
 
-                                            <button  style="background: transparent; border: none; outline: none; color: #fff"><a  class="icon active swipe-to-top"></a></button>
+                                            <button  style="background: transparent; border: none; outline: none; color: #fff"><a  class="icon active swipe-to-top"> <i class="fas fa-heart"></i></a></button>
 
                                         </form>
-                                            <i class="fas fa-heart"></i>
+
 
                                         <div class="icon swipe-to-top" data-toggle="modal" data-target="#quickViewModal">
                                             <i class="fas fa-eye"></i>
@@ -672,20 +672,22 @@
 {{--    </div>--}}
 {{--</div>--}}
 <!-- All custom scripts here -->
-<script src="js/scripts.js"></script>
 
-<!-- Revolution JS Files -->
-<script src="revolution/js/jquery.themepunch.tools.min.js"></script>
-<script src="revolution/js/jquery.themepunch.revolution.min.js"></script>
 
-<!-- Slider Revolution extension scripts. ONLY NEEDED FOR LOCAL TESTING -->
-<script src="revolution/js/extensions/revolution.extension.actions.min.js"></script>
-<script src="revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-<script src="revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-<script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-<script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script src="revolution/js/extensions/revolution.extension.video.min.js"></script>
+{{--<script src="js/scripts.js"></script>--}}
+
+{{--<!-- Revolution JS Files -->--}}
+{{--<script src="revolution/js/jquery.themepunch.tools.min.js"></script>--}}
+{{--<script src="revolution/js/jquery.themepunch.revolution.min.js"></script>--}}
+
+{{--<!-- Slider Revolution extension scripts. ONLY NEEDED FOR LOCAL TESTING -->--}}
+{{--<script src="revolution/js/extensions/revolution.extension.actions.min.js"></script>--}}
+{{--<script src="revolution/js/extensions/revolution.extension.carousel.min.js"></script>--}}
+{{--<script src="revolution/js/extensions/revolution.extension.kenburn.min.js"></script>--}}
+{{--<script src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>--}}
+{{--<script src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>--}}
+{{--<script src="revolution/js/extensions/revolution.extension.parallax.min.js"></script>--}}
+{{--<script src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>--}}
+{{--<script src="revolution/js/extensions/revolution.extension.video.min.js"></script>--}}
 
 @include('partials.footer')

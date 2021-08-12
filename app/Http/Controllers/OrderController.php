@@ -8,7 +8,7 @@ class OrderController
 {
     public function index()
     {
-        return view('orderinfo');
+        return view('orders_page');
     }
 
 }

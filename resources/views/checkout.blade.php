@@ -33,10 +33,10 @@
 {{--                            <a class="nav-link " id="pills-billing-tab" data-toggle="pill" href="#pills-billing" role="tab" aria-controls="pills-billing" aria-selected="false"><span class="d-flex d-lg-none">2</span><span class="d-none d-lg-flex">Billing Address</span></a>--}}
 {{--                          </li>--}}
                           <li class="nav-item">
-                            <a class="nav-link " id="pills-method-tab" data-toggle="pill" href="#pills-method" role="tab" aria-controls="pills-method" aria-selected="false"><span class="d-flex d-lg-none">3</span><span class="d-none d-lg-flex">{{ __('messages.Методы_доставки') }}</span></a>
+                            <a class="nav-link " id="pills-method-tab" data-toggle="pill" href="#pills-method" role="tab" aria-controls="pills-method" aria-selected="false"><span class="d-flex d-lg-none">2</span><span class="d-none d-lg-flex">{{ __('messages.Методы_доставки') }}</span></a>
                           </li>
                           <li class="nav-item">
-                              <a class="nav-link " id="pills-order-tab" data-toggle="pill" href="#pills-order" role="tab" aria-controls="pills-order" aria-selected="false"><span class="d-flex d-lg-none">4</span><span class="d-none d-lg-flex">{{ __('messages.Информация_заказа') }}</span></a>
+                              <a class="nav-link " id="pills-order-tab" data-toggle="pill" href="#pills-order" role="tab" aria-controls="pills-order" aria-selected="false"><span class="d-flex d-lg-none">3</span><span class="d-none d-lg-flex">{{ __('messages.Информация_заказа1') }}</span></a>
                             </li>
                         </ul>
 
@@ -363,12 +363,12 @@ Flat Rate --- $11
                                 <div class="col-12 col-sm-12">
                                     <div class="row">
                                         <div class="heading">
-                                            <h4>Order Notes & Summary</h4>
+                                            <h4>{{ __('messages.Примечания') }}</h4>
 
                                           </div>
 
                                       <div class="form-group" style="width:100%; padding:0;">
-                                          <label for="exampleFormControlTextarea1">Please write notes of your order</label>
+                                          <label for="exampleFormControlTextarea1">{{ __('messages.Пожалуйста_напишите') }}</label>
                                           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
                                     </div>
@@ -377,11 +377,11 @@ Flat Rate --- $11
                                 <div class="col-12 col-sm-12 ">
                                     <div class="row">
                                       <div class="heading">
-                                        <h4>Payment Methods</h4>
+                                        <h4>{{ __('messages.способы_оплаты') }}</h4>
 
                                       </div>
                                       <div class="form-group" style="width:100%; padding:0;">
-                                          <label for="exampleFormControlTextarea1" style="width:100%; margin-bottom:30px;">Please select a prefered payment method to use on this order.</label>
+                                          <label for="exampleFormControlTextarea1" style="width:100%; margin-bottom:30px;">{{ __('messages.Пожалуйста_выберите') }}</label>
                                           <div class="form-check form-check-inline">
                                               <input class="form-check-input" type="radio" id="inlineCheckbox1" value="option1">
                                               <label class="form-check-label" for="inlineCheckbox1"><img src="images/miscellaneous/paypal.png" alt="Image"></label>
@@ -414,7 +414,7 @@ Flat Rate --- $11
                                 <div class="col-12 col-sm-12">
                                     <div class="row">
                                       <a data-toggle="pill" href="#pills-method"  class="btn btn-light swipe-to-top cta">Back</a>
-                                  <a href="thankyou.html" class="btn btn-secondary swipe-to-top">{{ __('messages.Продолжить') }}</a>
+                                  <a href="{{ route('thanks') }}" class="btn btn-secondary swipe-to-top">{{ __('messages.Продолжить') }}</a>
                                     </div>
                                 </div>
                           </div>
@@ -434,14 +434,14 @@ Flat Rate --- $11
                     <tbody>
                       <tr>
                         <th scope="row">{{ __('messages.Промежуточная_цена') }}</th>
-                        <td >$910.00</td>
+                        <td >{{ $total_sum}}</td>
 
                       </tr>
-                      <tr>
-                        <th scope="row">{{ __('messages.Код_купона') }}</th>
-                        <td >$20.00</td>
+{{--                      <tr>--}}
+{{--                        <th scope="row">{{ __('messages.Код_купона') }}</th>--}}
+{{--                        <td >$20.00</td>--}}
 
-                      </tr>
+{{--                      </tr>--}}
                       <tr>
                           <th scope="row">{{ __('messages.налоги') }}</th>
                           <td >$150.00</td>

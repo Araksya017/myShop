@@ -129,16 +129,16 @@ $cart_count = 0;
                 <div class="col-12 col-lg-12 mb-4">
 
                     <div class="row justify-content-between">
-                        <div class="col-12 col-lg-4">
-                            <div class="row">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" style="height: 43px;" placeholder="{{ __('messages.Код_купона') }}" aria-label="Coupon code" aria-describedby="coupon-code">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-secondary swipe-to-top" type="button" id="coupon-code">{{ __('messages.Применять') }}</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="col-12 col-lg-4">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="input-group">--}}
+{{--                                    <input type="text" class="form-control" style="height: 43px;" placeholder="{{ __('messages.Код_купона') }}" aria-label="Coupon code" aria-describedby="coupon-code">--}}
+{{--                                    <div class="input-group-append">--}}
+{{--                                        <button class="btn btn-secondary swipe-to-top" type="button" id="coupon-code">{{ __('messages.Применять') }}</button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="col-12 col-lg-7">
                             <div class="row justify-content-end btn-res">
                                 <button type="button" class="btn btn-link "><a href="{{  route('shop.shop')}}">{{ __('messages.Продолжить_покупки') }}</a></button>
@@ -151,6 +151,12 @@ $cart_count = 0;
             <div class="col-12 col-lg-3">
 
 
+                <?php
+                $sale_products= DB::table('products')->select()
+//                   ->where('id',$id)
+
+                    ->get();
+                ?>
 
                 <table class="table right-table">
                     <thead>
@@ -167,11 +173,11 @@ $cart_count = 0;
                         <td >{{ $total_sum}}</td>
 
                     </tr>
-                    <tr>
-                        <th scope="row">{{ __('messages.Код_купона') }}</th>
-                        <td >$20</td>
+{{--                    <tr>--}}
+{{--                        <th scope="row">{{ __('messages.акция') }}</th>--}}
+{{--                        <td >{{ $sale_products}}</td>--}}
 
-                    </tr>
+{{--                    </tr>--}}
                     <tr class="item-price">
                         <th scope="row">{{ __('messages.Итог') }}</th>
                         <td >{{ $total_sum}}</td>

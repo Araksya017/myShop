@@ -84,11 +84,11 @@
                         <td class="col-12 col-md-8">
 
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-                                <label class="form-check-label" for="exampleRadios1">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                </label>
+{{--                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">--}}
+{{--                                <label class="form-check-label" for="exampleRadios1">--}}
+{{--                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,--}}
+{{--                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.--}}
+{{--                                </label>--}}
 
                             </div>
                         </td>

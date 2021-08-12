@@ -28,12 +28,12 @@
                     <li>
                         <h2>{{ __('messages.тема') }}</h2>
                         <p>
-                            <span>Katora<br>Demo Store 3654123</span>
+                            <span >MY SHOP<br>{{ __('messages.онлайн_магазин') }}</span>
 
                         </p>
                     </li>
                     <li>
-                        <h2>Editorial Inquiries</h2>
+                        <h2>{{ __('messages.Редакционные_запросы') }}</h2>
                         <span>888-9636-6000<br>info@example.com</span>
                     </li>
                     <li>
@@ -66,12 +66,14 @@
                     </div>
                 </div>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                    {{ __('messages.Свяжитесь') }}</p>
+                <p>{{ __('messages.адрес_эл') }}</p>
+                <p> {{ __('messages.для_звонков') }}</p>
+                <p> {{ __('messages.регион') }}</p>
+                <p>  {{ __('messages.служба') }}</p>
+                <p>  {{ __('messages.форма') }}</p>
+                <p>  {{ __('messages.инфо') }}</p>
+
                 <form action="#" name="contact" id="theForm" method="POST">
                     <div class="form-group row">
 

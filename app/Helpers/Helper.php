@@ -53,7 +53,7 @@ class Helper{
    if (isset($conditions['category'])) {
 
             $cat_id = Category::where('name', $conditions['category'])->firstOrfail();
-//            dd($cat_id);
+//            dd($cat_id->id);
             $filters['category_id'] = $cat_id->id;
             if (isset($conditions['min_price']) && isset($conditions['max_price'])) {
                 $products1 = DB::table('Products')->where('show',1)->get();

@@ -11,10 +11,10 @@
             <div class="col-12">
                 <div class="pro-empty-page">
                     <h2 style="font-size: 150px;"><i class="far fa-check-circle"></i></h2>
-                    <h1 >Thank You</h1>
-                    <p>
-                        You have successfully place your order. Your order id is 354365G4.
-                        Go to the <a href="order-detail.html" class="btn-link"><b>Order page</b></a>.
+                    <h1 >{{ __('messages.благодарим') }}</h1>
+                    <p>{{ __('messages.завершена') }} </p>
+                    354365G4.
+                    <p> {{ __('messages.Перейдите') }} </p> <a href="{{ route('orders.info') }}" class="btn-link"><b>{{ __('messages.Информация_о_заказе') }}</b></a>
                     </p>
                 </div>
                 </p>

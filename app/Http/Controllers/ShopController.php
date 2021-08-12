@@ -27,6 +27,8 @@ class ShopController extends Controller
         $conditions = request()->all();
         $products = \App\Helpers\Helper::shopFilter($conditions, 9);
 //        dd($products);
+        $shopimg = DB::table('homebaners')->where('id','5')->first();
+
 
 
 //       $products = DB::table('products')->simplePaginate(10);
@@ -41,6 +43,10 @@ class ShopController extends Controller
 //            'subject' => $subject,
 //          'pagination'=>$pagination
             'user' => $user,
+            'shopimg' =>$shopimg,
+
+
+
 
 //            'new_products'=>$new_products,
         ]);
